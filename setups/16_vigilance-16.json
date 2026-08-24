@@ -1,0 +1,70 @@
+{
+  "name": "Vigilance 16",
+  "players": 16,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/aW1wdZkX",
+  "notes": "The mafia odd/even-night vigis add a factional kill on their night while alive; record it as a second mafia kill.",
+  "roster": [
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd-Night Vigi"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "even-night"
+      ],
+      "as": "Even-Night Vigi"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd-Night Vigi"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "even-night"
+      ],
+      "as": "Even-Night Vigi"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "smart",
+        "vengeful"
+      ],
+      "as": "Smart Hunter"
+    },
+    {
+      "role": "vt",
+      "count": 10,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}
