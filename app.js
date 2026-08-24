@@ -484,9 +484,11 @@ const app = Vue.createApp({
               benched.push({ name: p.name, role: this.instName(p), why: (p.mods || []).includes("odd-night") ? "acts on odd nights" : "acts on even nights" });
               return false;
             }
-            if (!c.joat && E.shotsLeft(p, priorN, priorD) <= 0 && !(nd.acts || {})[p.name]) {
-              benched.push({ name: p.name, role: this.instName(p), why: "no uses left" });
-              return false;
+            if (!c.joat && E.shotsLeft(p, priorN, priorD) <= 0 && !(nd.acts || {})[p.name]) return false;
+            if (c.joat && !(nd.acts || {})[p.name]) {
+              const left = ["save", "shoot", "check"].filter((m) =>
+                !this.game.nights.some((x) => x.n < n && x.acts && x.acts[p.name] && x.modes && x.modes[p.name] === m));
+              if (!left.length) return false;
             }
             return true;
           })
