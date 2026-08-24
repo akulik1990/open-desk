@@ -1,0 +1,78 @@
+{
+  "name": "Matrix6",
+  "players": 9,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://wiki.mafiascum.net/index.php?title=Matrix6",
+  "notes": "The mod deals one random row or column of the grid, plus the base. Always resolves to 7 town and 2 mafia. The roleblocker may still submit the kill. The bulletproof save is reflexive and cannot be roleblocked.",
+  "roster": [],
+  "randomize": {
+    "mode": "matrix",
+    "lines": [
+      "rows",
+      "cols"
+    ],
+    "base": [
+      {
+        "role": "vt",
+        "count": 5,
+        "align": "town"
+      },
+      {
+        "role": "mafia",
+        "count": 1,
+        "align": "mafia"
+      }
+    ],
+    "grid": [
+      [
+        {
+          "role": "jailkeeper",
+          "align": "town"
+        },
+        {
+          "role": "vt",
+          "align": "town"
+        },
+        {
+          "role": "mafia",
+          "align": "mafia"
+        }
+      ],
+      [
+        {
+          "role": "roleblocker",
+          "align": "mafia"
+        },
+        {
+          "role": "cop",
+          "align": "town"
+        },
+        {
+          "role": "medic",
+          "align": "town"
+        }
+      ],
+      [
+        {
+          "role": "bulletproof",
+          "mods": [
+            "one-shot"
+          ],
+          "align": "town"
+        },
+        {
+          "role": "mafia",
+          "align": "mafia"
+        },
+        {
+          "role": "tracker",
+          "align": "town"
+        }
+      ]
+    ]
+  }
+}

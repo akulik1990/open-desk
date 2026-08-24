@@ -1,0 +1,64 @@
+{
+  "name": "Lovesick 14",
+  "players": 14,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/qzTDf2ie",
+  "notes": "The masons become lovers if any of them claims (linked death then applies). Until then they are a mason chat.",
+  "roster": [
+    {
+      "role": "heartbreaker",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "roleblocker",
+      "count": 1,
+      "align": "mafia",
+      "tags": [
+        "non-consec"
+      ]
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "medic",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "two-shot"
+      ],
+      "as": "EMT (Two-Shot Medic)"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd-Night Vigilante"
+    },
+    {
+      "role": "mason",
+      "count": 2,
+      "align": "town",
+      "tags": [
+        "lovers-on-claim"
+      ],
+      "as": "Mason (lovers on claim)"
+    },
+    {
+      "role": "vt",
+      "count": 7,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

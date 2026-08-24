@@ -1,0 +1,29 @@
+{
+  "name": "Two Groups 10er",
+  "players": 10,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/shvBvVRZ",
+  "notes": "Players split into two groups of five (each with at least one mafia). Day 1 is played in two halves, one group then the other; from Day 2 everyone is together. Run the split days by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 3,
+      "align": "mafia"
+    },
+    {
+      "role": "mason",
+      "count": 2,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 5,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

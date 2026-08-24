@@ -1,0 +1,53 @@
+{
+  "name": "Bomb Squad",
+  "players": 13,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/BV1dtaF0",
+  "notes": "Explosion deaths hide alignment. The suicide bomber, bomber, dynamite cop, and explosion analyst all revolve around explosions. Run the explosion chains by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "as": "Suicide Bomber"
+    },
+    {
+      "role": "rolecop",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Bomber"
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town",
+      "as": "Dynamite Cop"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Explosion Analyst"
+    },
+    {
+      "role": "vt",
+      "count": 7,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

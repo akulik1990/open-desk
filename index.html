@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Desk</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" class="wrap" v-cloak>
+  <header class="masthead">
+    <h1>Open Desk</h1>
+    <span class="sub">open-setup moderator console</span>
+    <div class="mast-right">
+      <div v-if="route==='console' && game.phase==='play'" class="stats">
+        <div class="stat"><span class="stat-label">Town</span><span class="stat-val town">{{ live.town }}</span></div>
+        <div class="stat"><span class="stat-label">Mafia</span><span class="stat-val maf">{{ live.threat }}</span></div>
+        <div class="stat"><span class="stat-label">Alive</span><span class="stat-val">{{ live.total }}</span></div>
+        <div class="stat"><span class="stat-label">Lynch</span><span class="stat-val">{{ live.majority }}</span></div>
+      </div>
+      <details class="settings">
+        <summary>⚙ Display</summary>
+        <div class="settings-panel">
+          <label>Colour <select v-model="theme" @change="setPref('theme', theme)">
+            <option value="gruvbox">Gruvbox</option>
+            <option value="dracula">Dracula</option>
+            <option value="catppuccin">Catppuccin</option>
+            <option value="nord">Nord</option>
+            <option value="tokyonight">Tokyo Night</option>
+            <option value="kanagawa">Kanagawa</option>
+          </select></label>
+          <label>Type <select v-model="font" @change="setPref('font', font)">
+            <option value="classic">Classic</option><option value="plain">Plain</option>
+            <option value="serif">Serif</option><option value="mono">Mono</option>
+          </select></label>
+        </div>
+      </details>
+      <button class="helpbtn" @click="tourStart" title="guided tour of this page">❔ Guide</button>
+      <a class="timer-link" href="https://akulik1990.github.io/mafia-timers/" target="_blank" rel="noopener"
+         onclick="window.open('https://akulik1990.github.io/mafia-timers/','mafiatimers','width=600,height=360');return false;">⏱ Timer</a>
+      <nav>
+        <button :class="{on:route==='library'}" @click="route='library'">Library</button>
+        <button :class="{on:route==='console'}" @click="route='console'" :disabled="!run.setup">Console</button>
+      </nav>
+    </div>
+  </header>
+
+  <div v-if="tour.on" class="guide-ov" @click.self="tourNext">
+    <div class="gspot" :style="tour.spot"></div>
+    <div class="gtip" :style="tour.tip" v-show="tour.title">
+      <h3>{{ tour.title }}</h3>
+      <p>{{ tour.body }}</p>
+      <div class="gnav">
+        <span class="gstep">{{ tour.i + 1 }} / {{ tour.total }}</span>
+        <span style="display:flex;gap:4px">
+          <button class="btn sm" @click="tourPrev" :disabled="tour.i===0">Back</button>
+          <button class="btn sm primary" @click="tourNext">{{ tour.i >= tour.total - 1 ? 'Done' : 'Next' }}</button>
+          <button class="btn sm" @click="tourEnd">Skip</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section v-if="route==='library'">
+    <div class="card" id="g-detail" v-if="selected">
+      <div class="spread"><h2>{{ selected.name }}</h2>
+        <div class="row">
+          <button class="btn primary" @click="toConsole(selected)">Run in console</button>
+          <button class="btn" @click="editSetup(selected)">Edit / copy</button>
+        </div>
+      </div>
+      <p class="note">{{ selected.players }} players, {{ selected.start }} start<span v-if="selected.nightless">, nightless</span>,
+        {{ kpLabel(selected) }}, reveal {{ selected.reveal }}<span v-if="selected.sleepPunishment">, sleep punishment</span></p>
+      <h3>Roles</h3>
+      <ul class="rolelist">
+        <li v-for="(e,i) in rosterOf(selected)" :key="i">
+          {{ e.count }}× <strong :title="roleDesc(e)">{{ displayName(e) }}</strong>
+          <span class="tag" :class="e.align">{{ e.align }}</span>
+          <span class="note" v-if="e.mods && e.mods.length" :title="modDescs(e)">{{ e.mods.join(', ') }}</span>
+          <span class="note" v-if="e.tags && e.tags.length">· {{ e.tags.join(', ') }}</span>
+        </li>
+      </ul>
+      <p v-if="selected.randomize" class="note">Randomised at deal time ({{ selected.randomize.mode }}). The roll happens when you run it.</p>
+      <p v-if="selected.notes" class="note notes">{{ selected.notes }}</p>
+      <p v-if="selected.pastebin" class="sharelink"><a :href="selected.pastebin" target="_blank" rel="noopener">setup description ↗</a></p>
+    </div>
+
+    <div class="card" id="g-setups">
+      <div class="spread"><h2>Setups</h2>
+        <div class="row">
+          <button class="btn primary" @click="newSetup">New setup</button>
+          <button class="btn" @click="$refs.impfile.click()">Import JSON…</button>
+          <input type="file" ref="impfile" accept=".json,application/json" style="display:none" @change="importFile">
+        </div>
+      </div>
+      <input class="libsearch" v-model="libSearch" placeholder="search — name, role, players, anything (e.g. gunsmith, 9p, nightless)">
+      <p class="note" v-if="!groupedSetups.length">nothing matches "{{ libSearch }}"</p>
+      <template v-for="g in groupedSetups" :key="g.players">
+        <div class="grouphead" @click="toggleFold(g.players)">
+          <span class="caret">{{ g.open ? '▾' : '▸' }}</span>
+          {{ g.players }} players <span class="note">— {{ g.setups.length }} setup{{ g.setups.length>1?'s':'' }}</span>
+        </div>
+        <template v-if="g.open">
+          <div v-for="s in g.setups" :key="s.name" class="setuprow" :class="{on:selected && selected.name===s.name}" @click="selected=s">
+            <div><strong>{{ s.name }}</strong>
+              <span class="pill" v-if="s.randomize">randomised</span>
+              <span class="pill" v-if="s._mine">yours</span></div>
+            <span class="note">{{ s.start }} start<span v-if="s.nightless">, nightless</span></span>
+          </div>
+        </template>
+      </template>
+    </div>
+  </section>
+
+  <section v-if="route==='builder'">
+    <div class="row" style="margin-bottom:0.8rem">
+      <button class="btn" @click="route='library'">← Library</button>
+    </div>
+
+    <div class="card" id="g-meta">
+      <div class="spread"><h2>{{ draft.name || 'New setup' }}</h2>
+        <span class="note" :style="{color: rosterSum===draft.players ? 'var(--good)':'var(--accent)'}">
+          {{ rosterSum }} / {{ draft.players }} seats</span>
+      </div>
+      <div class="fieldgrid">
+        <label class="field2">Name <input v-model="draft.name"></label>
+        <label class="field2">Players <input type="number" min="3" max="24" v-model.number="draft.players"></label>
+        <label class="field2">Start <select v-model="draft.start"><option>day</option><option>night</option></select></label>
+        <label class="field2">Reveal on death <select v-model="draft.reveal"><option>full</option><option>none</option></select></label>
+        <label class="field2">Mafia KP <input type="number" min="0" max="4" v-model.number="draft.mafiaKp"></label>
+        <label class="field2">Steps down at ≤ N mafia (0 = constant) <input type="number" min="0" max="6" v-model.number="draft.kpTill"></label>
+        <label class="field2">Day votes <input type="number" min="1" max="4" v-model.number="draft.dayVotes"></label>
+      </div>
+      <p class="note">{{ kpLabel(draft) }}</p>
+      <div class="row">
+        <label class="chk"><input type="checkbox" v-model="draft.nightless"> nightless</label>
+        <label class="chk"><input type="checkbox" v-model="draft.sleepPunishment"> sleep punishment</label>
+      </div>
+      <label class="field2 wide">Pastebin / description link <input v-model="draft.pastebin"></label>
+      <label class="field2 wide">Notes (rules the app does not mechanise) <textarea rows="2" v-model="draft.notes"></textarea></label>
+    </div>
+
+    <div class="card" id="g-roster" v-if="!draft.randomize">
+      <h2>Roster</h2>
+      <div class="rrow" v-for="(e,i) in draft.roster" :key="i">
+        <div class="rrow-main">
+          <select v-model="e.role" :title="roleDesc(e)"><option v-for="(r,id) in catalog.roles" :value="id" :title="r.desc">{{ r.name }}</option></select>
+          <input type="number" min="1" v-model.number="e.count" title="count">
+          <select v-model="e.align"><option>town</option><option>mafia</option><option>sk</option><option>wolf</option></select>
+          <input v-model="e.as" placeholder="custom name (flavour)">
+          <button class="btn-copy" @click="draft.roster.splice(i,1)">✕</button>
+        </div>
+        <div class="rrow-sub">
+          <span class="mlabel">engine modifiers</span>
+          <label class="chk" v-for="(m,id) in catalog.mods" :key="id" :title="m.desc">
+            <input type="checkbox" :checked="hasMod(e,id)" @change="toggleMod(e,id)"> {{ id }}</label>
+          <input class="tagsin" v-model="e.tagsText" @input="e.tags = splitMods(e.tagsText)" placeholder="tags (flavour, free text)">
+        </div>
+      </div>
+      <button class="btn" @click="addRosterRow">+ role</button>
+    </div>
+    <div class="card" v-else>
+      <h2>Randomised setup</h2>
+      <p class="note">This setup rolls its roster at deal time ({{ draft.randomize.mode }}). Editing the grid by hand is done through the JSON below for now.</p>
+    </div>
+
+    <div class="card" id="g-save">
+      <h2>Save</h2>
+      <div class="row">
+        <button class="btn primary" @click="saveMine">Save to my browser</button>
+        <span class="note">keeps it in your Library on this device, under a "yours" tag</span>
+      </div>
+      <div class="row">
+        <button class="btn" @click="downloadExport">Export JSON</button>
+        <span class="note">downloads the setup as a file — send it to Dr Morris to get it added to the shared dropdown</span>
+      </div>
+    </div>
+  </section>
+
+  <section v-if="route==='console' && run.setup">
+    <div class="card" id="g-names" v-if="game.phase==='names'">
+      <h2>{{ run.setup.name }}</h2>
+      <p class="note">{{ run.setup.players }} players, {{ kpLabel(run.setup) }}<span v-if="run.setup.nightless">, nightless</span>.
+        <a v-if="run.setup.pastebin" :href="run.setup.pastebin" target="_blank" rel="noopener">description ↗</a></p>
+      <p v-if="run.setup.notes" class="note notes">{{ run.setup.notes }}</p>
+      <p class="note">Enter the {{ run.setup.players }} players, one per line or comma separated.</p>
+      <textarea rows="7" v-model="game.nameInput" placeholder="players"></textarea>
+      <p class="counter" :style="{color: nameList.length===run.setup.players ? 'var(--good)':'var(--muted)'}">{{ nameList.length }} of {{ run.setup.players }}</p>
+      <div class="row"><button class="btn primary" :disabled="nameList.length!==run.setup.players" @click="dealNow">Deal roles</button></div>
+      <p class="error" v-if="game.err">{{ game.err }}</p>
+    </div>
+
+    <div class="card" id="g-deal" v-if="game.phase==='deal'">
+      <div class="spread"><h2>The deal</h2>
+        <div class="row"><button class="btn" @click="dealNow">Re-deal</button><button class="btn primary" @click="startGame">Accept &amp; run</button></div>
+      </div>
+      <p class="note" v-if="run.setup.randomize">Rolled {{ run.setup.randomize.mode }}: {{ rolledSummary }}</p>
+      <ol class="roster">
+        <li v-for="p in game.pending" :key="p.seat">
+          <span class="pos">{{ p.seat }}</span><span class="name">{{ p.name }}</span>
+          <span :title="roleDesc(p)">{{ instName(p) }}</span><span class="tag" :class="p.align">{{ p.align }}</span>
+        </li>
+      </ol>
+      <div class="paste"><div class="head"><span>role reveal — discord</span><button class="btn-copy" @click="copy($event, revealText)">Copy</button></div><pre>{{ revealText }}</pre></div>
+    </div>
+
+    <div v-if="game.phase==='play'" class="cols">
+      <aside>
+        <div v-if="winner" class="winbanner" :class="winner">{{ winner.toUpperCase() }} WINS</div>
+        <div class="card" id="g-proster">
+          <h2>Roster</h2>
+          <ol class="roster">
+            <li v-for="p in game.players" :key="p.seat" :class="{dead: deadSet.has(p.name)}">
+              <span class="pos">{{ p.seat }}</span><span class="name click" @click="renamePlayer(p)" title="rename">{{ p.name }}</span>
+              <span class="note" :title="roleDesc(p)">{{ instName(p) }}</span><span class="tag" :class="p.align">{{ p.align }}</span>
+              <span class="died">{{ marks[p.name] || '' }}</span>
+            </li>
+          </ol>
+        </div>
+        <div class="card" id="g-reveal">
+          <div class="paste"><div class="head"><span>role reveal</span><button class="btn-copy" @click="copy($event, revealText)">Copy</button></div><pre>{{ revealText }}</pre></div>
+          <p v-if="run.setup.pastebin" class="sharelink"><a :href="run.setup.pastebin" target="_blank" rel="noopener">setup description ↗ (share)</a></p>
+          <p v-if="run.setup.notes" class="note notes">{{ run.setup.notes }}</p>
+          <div class="row">
+            <button class="btn" @click="newGame">New game</button>
+            <button class="btn" @click="exportOpen=!exportOpen">Full export</button>
+          </div>
+          <div class="paste" v-if="exportOpen"><div class="head"><span>full game</span><button class="btn-copy" @click="copy($event, exportText())">Copy</button></div><pre>{{ exportText() }}</pre></div>
+        </div>
+      </aside>
+
+      <main>
+        <div v-if="winner" class="winbanner" :class="winner">{{ winner.toUpperCase() }} WINS</div>
+        <template v-for="blk in phaseBlocks" :key="blk.key">
+          <div class="day-strip" v-if="blk.type==='day'">Day {{ blk.n }}</div>
+          <div class="card" :class="'phase-' + blk.type">
+            <h3 v-if="blk.type==='day'">Day {{ blk.n }} vote</h3>
+            <h3 v-else>Night {{ blk.n }}</h3>
+            <div v-if="blk.decided" class="decided">Game was already decided.</div>
+            <template v-else-if="blk.type==='day'">
+              <div class="field" v-for="o in blk.owed" :key="'p'+o">
+                <label>Poisoned: {{ o }}</label>
+                <select :value="game.days[blk.n].cures.includes(o) ? 'cure' : ''" @change="cureToggle(blk.n, o, $event.target.value==='cure')">
+                  <option value="">dies at end of day</option>
+                  <option value="cure" v-if="blk.healers.length">cured ({{ blk.healers.join(', ') }})</option>
+                </select>
+              </div>
+              <div class="field" v-for="a in blk.shooters" :key="'s'+a.name">
+                <label>{{ a.name }} <span class="note">day shot — {{ a.role }}</span></label>
+                <select :value="game.days[blk.n].shots[a.name] ?? ''" @change="set(game.days[blk.n].shots, a.name, $event.target.value)">
+                  <option value="">holster</option>
+                  <option v-for="nm in a.targets" :value="nm">{{ nm }}</option>
+                </select>
+                <select v-if="game.days[blk.n].shots[a.name]" class="force" :value="game.days[blk.n].shotForce[a.name] ?? ''" @change="set(game.days[blk.n].shotForce, a.name, $event.target.value)" title="override how this action resolves">
+                  <option value="">auto</option><option value="none">no effect</option>
+                </select>
+              </div>
+              <div class="field" v-for="v in blk.slots" :key="v">
+                <label>Vote {{ blk.slots>1 ? v : '' }} out</label>
+                <select :value="game.votes[blk.n][v-1] ?? ''" @change="setIdx(game.votes[blk.n], v-1, $event.target.value)">
+                  <option value="">no lynch</option>
+                  <option v-for="nm in blk.alive" :value="nm">{{ nm }}</option>
+                </select>
+              </div>
+              <div class="field" v-if="blk.sleep && !game.votes[blk.n].filter(Boolean).length">
+                <label>Sleep punishment kill</label>
+                <select v-model="game.days[blk.n].sleepKill">
+                  <option value="">none</option>
+                  <option v-for="nm in blk.alive" :value="nm">{{ nm }}</option>
+                </select>
+              </div>
+              <div class="field" v-for="(ev,i) in game.days[blk.n].events" :key="'ev'+i">
+                <label>Event</label>
+                <select v-model="ev.who"><option value="">no one</option><option v-for="nm in blk.alive" :value="nm">{{ nm }}</option></select>
+                <select class="evkind" v-model="ev.kind"><option value="death">death</option><option value="note">note</option></select>
+                <input class="evnote" v-model="ev.note" placeholder="reason / what happened">
+                <button class="btn-copy" @click="game.days[blk.n].events.splice(i,1)">✕</button>
+              </div>
+              <div class="field"><button class="btn sm" @click="game.days[blk.n].events.push({who:'',kind:'death',note:''})">+ event</button></div>
+            </template>
+            <template v-else>
+              <div class="field" v-for="i in blk.kp" :key="'k'+i">
+                <label>Mafia kill {{ blk.kp>1 ? i : '' }}</label>
+                <select :value="night(blk.n).kills.mafia[i-1] ?? ''" @change="setIdx(night(blk.n).kills.mafia, i-1, $event.target.value)">
+                  <option value="">no kill</option>
+                  <option v-for="nm in blk.alive" :value="nm">{{ nm }}</option>
+                </select>
+                <select v-if="night(blk.n).kills.mafia[i-1]" class="force" :value="night(blk.n).killForce[i-1] ?? ''" @change="setIdx(night(blk.n).killForce, i-1, $event.target.value)" title="override how this action resolves">
+                  <option value="">auto</option><option value="kill">force kill</option><option value="none">no effect</option>
+                </select>
+              </div>
+              <div class="field" v-for="b in blk.benched" :key="'b'+b.name">
+                <label>{{ b.name }} <span class="note">{{ b.role }}</span></label>
+                <span class="note">{{ b.why }}</span>
+              </div>
+              <div class="field" v-for="a in blk.actors" :key="a.name">
+                <label>{{ a.name }} <span class="note" :title="a.desc">{{ a.role }}</span></label>
+                <template v-if="a.dreamer">
+                  <button class="btn sm" @click="rollDream(blk.n, a.name, 'one')">Dream of one</button>
+                  <button class="btn sm" @click="rollDream(blk.n, a.name, 'three')">Dream of three</button>
+                  <span class="cresult" v-if="a.dream">{{ a.dream }}</span>
+                </template>
+                <template v-else>
+                  <select v-if="a.joat" class="joatmode" :value="a.mode" @change="set(night(blk.n).modes, a.name, $event.target.value)">
+                    <option value="">—</option><option v-for="m in a.modeOpts" :value="m">{{ m }}</option>
+                  </select>
+                  <select :value="night(blk.n).acts[a.name] ?? ''" @change="set(night(blk.n).acts, a.name, $event.target.value)">
+                    <option value="">{{ a.holster }}</option>
+                    <option v-for="nm in a.targets" :value="nm">{{ nm }}</option>
+                  </select>
+                  <select v-if="a.forceable && night(blk.n).acts[a.name]" class="force" :value="night(blk.n).force[a.name] ?? ''" @change="set(night(blk.n).force, a.name, $event.target.value)" title="override how this action resolves">
+                    <option value="">auto</option><option value="kill">force kill</option><option value="none">no effect</option>
+                  </select>
+                  <span class="cresult" v-if="a.result">{{ a.result }}</span>
+                </template>
+              </div>
+              <div class="field" v-for="(ev,i) in night(blk.n).events" :key="'ev'+i">
+                <label>Event</label>
+                <select v-model="ev.who"><option value="">no one</option><option v-for="nm in blk.alive" :value="nm">{{ nm }}</option></select>
+                <select class="evkind" v-model="ev.kind"><option value="death">death</option><option value="note">note</option></select>
+                <input class="evnote" v-model="ev.note" placeholder="reason / what happened">
+                <button class="btn-copy" @click="night(blk.n).events.splice(i,1)">✕</button>
+              </div>
+              <div class="field"><button class="btn sm" @click="night(blk.n).events.push({who:'',kind:'death',note:''})">+ event</button></div>
+              <div class="field">
+                <label>Formals (Day {{ blk.n + 1 }})</label>
+                <span class="rngrow">
+                  <template v-for="i in [0,1]" :key="i">
+                    <span v-if="i===1">+</span>
+                    <button class="btn sm" v-if="nightRng(blk.n)[i]==null" @click="rollRng(blk.n, i)">Roll</button>
+                    <span v-else class="rngval">{{ nightRng(blk.n)[i] }}</span>
+                  </template>
+                  <span>=</span>
+                  <span class="rngval">{{ nightRng(blk.n)[0]!=null && nightRng(blk.n)[1]!=null ? nightRng(blk.n)[0]+nightRng(blk.n)[1] : '?' }}</span>
+                </span>
+              </div>
+              <template v-if="blk.checks.length">
+                <div class="checks-hd">check results — send to each player</div>
+                <div class="paste" v-for="c in blk.checks" :key="c.who">
+                  <div class="head"><span>to {{ c.who }}</span><button class="btn-copy" @click="copy($event, c.msg)">Copy</button></div><pre>{{ c.msg }}</pre>
+                </div>
+              </template>
+              <div class="paste"><div class="head"><span>night {{ blk.n }} actions — discord</span><button class="btn-copy" @click="copy($event, blk.discord)">Copy</button></div><pre>{{ blk.discord }}</pre></div>
+            </template>
+          </div>
+        </template>
+        <div class="row"><button class="btn primary" v-if="!winner" @click="advance">{{ nextLabel }}</button></div>
+      </main>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>

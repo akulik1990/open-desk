@@ -1,0 +1,70 @@
+{
+  "name": "Small Stars",
+  "players": 14,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/6hgrNvCv",
+  "notes": "The mafia two-shot compulsive vigi is an extra factional kill; a back-up vigi inherits it on death.",
+  "roster": [
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "two-shot"
+      ],
+      "tags": [
+        "compulsive"
+      ],
+      "as": "Two-Shot Compulsive Vigilante"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "tags": [
+        "backup"
+      ],
+      "as": "Back-up Vigilante"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "nerfed-medic",
+      "count": 1,
+      "align": "town",
+      "tags": [
+        "non-consec"
+      ]
+    },
+    {
+      "role": "parity-cop",
+      "count": 1,
+      "align": "town",
+      "tags": [
+        "n0"
+      ]
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ],
+      "as": "One-Shot Vigilante"
+    },
+    {
+      "role": "vt",
+      "count": 8,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

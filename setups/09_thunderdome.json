@@ -1,0 +1,36 @@
+{
+  "name": "Thunderdome 9",
+  "players": 9,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/XKicL6xc",
+  "notes": "Bespoke voting: the two most-voted players are nominated for a duel at end of day, speak in turn, then the room revotes (non-voters count for the second player). Thor can force two players into the Thunderdome once; Loki can swap out the first time they are placed. Run the duel voting by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Thor"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Loki"
+    },
+    {
+      "role": "vt",
+      "count": 5,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

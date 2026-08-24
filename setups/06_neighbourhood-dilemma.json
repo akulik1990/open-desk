@@ -1,0 +1,37 @@
+{
+  "name": "Neighbourhood Dilemma",
+  "players": 6,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/Ksx52y5a",
+  "notes": "Players sit in 3 neighbourhoods of two: one holds 2 VTs, the other two hold 1 SK and 1 VT each. The serial killers are not aligned and win alone. Assign the neighbourhoods yourself.",
+  "roster": [
+    {
+      "role": "serial-killer",
+      "count": 1,
+      "align": "sk",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd-Night SK"
+    },
+    {
+      "role": "serial-killer",
+      "count": 1,
+      "align": "sk",
+      "mods": [
+        "even-night"
+      ],
+      "as": "Even-Night SK"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

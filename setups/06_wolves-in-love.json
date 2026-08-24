@@ -1,0 +1,24 @@
+{
+  "name": "Wolves in Love",
+  "players": 6,
+  "start": "day",
+  "nightless": true,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 0,
+  "pastebin": "https://pastebin.com/raw/gGLJ5nJA",
+  "notes": "The two mafia are lovers: when one dies the other dies of lovesickness.",
+  "roster": [
+    {
+      "role": "lover",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

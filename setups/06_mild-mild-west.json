@@ -1,0 +1,34 @@
+{
+  "name": "Mild Mild West",
+  "players": 6,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/tGFLeD3c",
+  "notes": "",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot",
+        "day"
+      ],
+      "as": "Day-Vigi"
+    },
+    {
+      "role": "vt",
+      "count": 3,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

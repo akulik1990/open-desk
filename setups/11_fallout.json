@@ -1,0 +1,42 @@
+{
+  "name": "Fallout",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/TjiZFYvK",
+  "notes": "KP is assigned. The atomic bomb kills everyone not in a vault on death, then the game goes nightless at 0 KP. The overseer recruits players into the vault each day. Run the vault and bomb by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "as": "Atomic Bomb"
+    },
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Overseer"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Vault Dweller"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Twin Peaks",
+  "players": 13,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/0BcUqfEk",
+  "notes": "BOB forces a chosen player to deliver the factional KP each night (they are not told). Record the kill as normal; BOB's target selection is by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "as": "BOB"
+    },
+    {
+      "role": "rolecop",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "vengeful"
+      ],
+      "as": "Vengeful"
+    },
+    {
+      "role": "tracker",
+      "count": 2,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot",
+        "odd-night"
+      ],
+      "as": "Odd Night Vigi"
+    },
+    {
+      "role": "vt",
+      "count": 7,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

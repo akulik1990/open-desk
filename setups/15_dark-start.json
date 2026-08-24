@@ -1,0 +1,137 @@
+{
+  "name": "Dark Stars",
+  "players": 15,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 2,
+  "kpTill": 2,
+  "pastebin": "https://gist.github.com/takethedraw/8afdac8491277cd5f69eae00e21fe63e",
+  "notes": "2 KP compulsory, no death reveals. One of three sub-setups is rolled at random; one mafia carries the corrupted PR power, the other two are vanilla. The split vigilante may not stack on the factional KP.",
+  "randomize": {
+    "mode": "oneOf",
+    "options": [
+      [
+        {
+          "role": "rolecop",
+          "count": 1,
+          "align": "mafia",
+          "as": "Rolecop (corrupted power)"
+        },
+        {
+          "role": "mafia",
+          "count": 2,
+          "align": "mafia"
+        },
+        {
+          "role": "mortician",
+          "count": 2,
+          "align": "town",
+          "mods": [
+            "one-shot"
+          ]
+        },
+        {
+          "role": "nerfed-medic",
+          "count": 2,
+          "align": "town"
+        },
+        {
+          "role": "vigilante",
+          "count": 1,
+          "align": "town",
+          "mods": [
+            "one-shot"
+          ]
+        },
+        {
+          "role": "vt",
+          "count": 7,
+          "align": "town"
+        }
+      ],
+      [
+        {
+          "role": "roleblocker",
+          "count": 1,
+          "align": "mafia",
+          "mods": [
+            "one-shot"
+          ],
+          "as": "Roleblocker (corrupted power)"
+        },
+        {
+          "role": "mafia",
+          "count": 2,
+          "align": "mafia"
+        },
+        {
+          "role": "mortician",
+          "count": 1,
+          "align": "town",
+          "mods": [
+            "one-shot"
+          ]
+        },
+        {
+          "role": "parity-cop",
+          "count": 1,
+          "align": "town"
+        },
+        {
+          "role": "vigilante",
+          "count": 1,
+          "align": "town",
+          "mods": [
+            "one-shot"
+          ]
+        },
+        {
+          "role": "vt",
+          "count": 9,
+          "align": "town"
+        }
+      ],
+      [
+        {
+          "role": "vigilante",
+          "count": 1,
+          "align": "mafia",
+          "mods": [
+            "one-shot"
+          ],
+          "as": "Split Vigilante (corrupted power)"
+        },
+        {
+          "role": "mafia",
+          "count": 2,
+          "align": "mafia"
+        },
+        {
+          "role": "mortician",
+          "count": 1,
+          "align": "town",
+          "mods": [
+            "one-shot"
+          ]
+        },
+        {
+          "role": "parity-cop",
+          "count": 1,
+          "align": "town"
+        },
+        {
+          "role": "nerfed-medic",
+          "count": 1,
+          "align": "town"
+        },
+        {
+          "role": "vt",
+          "count": 9,
+          "align": "town"
+        }
+      ]
+    ]
+  }
+}

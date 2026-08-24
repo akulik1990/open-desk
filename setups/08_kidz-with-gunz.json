@@ -1,0 +1,38 @@
+{
+  "name": "Kidz with Gunz",
+  "players": 8,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/q838xHcC",
+  "notes": "The mafia have a factional suicide bomb: visit and kill both, no flips, overrides other deaths, usable day or night. Run the bomb by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "innocent-child",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ],
+      "as": "One-Shot Vigilante"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

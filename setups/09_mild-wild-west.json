@@ -1,0 +1,52 @@
+{
+  "name": "Mild Wild West",
+  "players": 9,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/i3Tt3RW0",
+  "notes": "",
+  "roster": [
+    {
+      "role": "sniper",
+      "count": 1,
+      "align": "mafia",
+      "as": "Sniper",
+      "mods": [
+        "one-shot"
+      ]
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot",
+        "day"
+      ],
+      "as": "Day-Vigi"
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ],
+      "as": "One-check Cop"
+    },
+    {
+      "role": "vt",
+      "count": 5,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,65 @@
+{
+  "name": "Wild Wild West",
+  "players": 12,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/CVycvgpr",
+  "notes": "The sheriff has a cop check plus a one-bullet day shot. Record the day shot by hand for now.",
+  "roster": [
+    {
+      "role": "rolecop",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "sniper",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "one-shot"
+      ],
+      "as": "One-Shot Sniper"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "medic",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot",
+        "day"
+      ],
+      "as": "One-shot Day Vigilante"
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town",
+      "items": [
+        "gun"
+      ],
+      "tags": [
+        "one-bullet"
+      ],
+      "as": "Sheriff"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

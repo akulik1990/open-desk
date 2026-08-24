@@ -1,0 +1,47 @@
+{
+  "name": "VVM",
+  "players": 10,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/nFAnVM1T",
+  "notes": "The mafia even-night vigi grants the team an extra kill on even nights while alive; record that as a second mafia kill.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "even-night"
+      ],
+      "as": "Even-Night Vigi"
+    },
+    {
+      "role": "nerfed-medic",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd-Night Vigi"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

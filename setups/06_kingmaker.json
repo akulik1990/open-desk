@@ -1,0 +1,24 @@
+{
+  "name": "Kingmaker",
+  "players": 6,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/a3nSEFdG",
+  "notes": "Bespoke: N0 the mafia hand out 2 fake crowns and 1 real crown to a town player. If the real-crown town is voted out, town loses. From Day 2 the real-crown holder becomes the ruler and makes free kills; killing a town player loses for town. Run the crown and ruler phases by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

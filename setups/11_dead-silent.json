@@ -1,0 +1,50 @@
+{
+  "name": "Dead Silent",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/9ERR0ZTL",
+  "notes": "The dead become ghosts with a nightly ghost chat; the silencer and marauder keep acting as ghosts. The marauder is a town killer on nights 1 and 2 (compulsive). Run the ghost chat by hand.",
+  "roster": [
+    {
+      "role": "silencer",
+      "count": 1,
+      "align": "mafia",
+      "tags": [
+        "non-consec"
+      ]
+    },
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "two-shot"
+      ],
+      "tags": [
+        "compulsive"
+      ],
+      "as": "Marauder"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Noble Soul"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

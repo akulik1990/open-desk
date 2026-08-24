@@ -1,0 +1,41 @@
+{
+  "name": "Bird 7",
+  "players": 7,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/JzBqDieX",
+  "notes": "",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town",
+      "tags": [
+        "macho"
+      ]
+    },
+    {
+      "role": "medic",
+      "count": 1,
+      "align": "town",
+      "as": "Scared Medic",
+      "tags": [
+        "scared"
+      ]
+    },
+    {
+      "role": "vt",
+      "count": 3,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

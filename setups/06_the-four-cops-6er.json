@@ -1,0 +1,68 @@
+{
+  "name": "The Four Cops 6er",
+  "players": 6,
+  "start": "night",
+  "nightless": true,
+  "reveal": "full",
+  "sleepPunishment": true,
+  "mafiaKp": 0,
+  "pastebin": "https://pastebin.com/raw/GgRitP7q",
+  "notes": "All four cops are two-shot compulsive (checks on n0 and n1). Sleep punishment: no exile grants the mafia a factional kill that night.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "mods": [
+        "vengeful"
+      ],
+      "align": "mafia",
+      "as": "Vengeful Mafia"
+    },
+    {
+      "role": "naive-cop",
+      "count": 1,
+      "mods": [
+        "two-shot"
+      ],
+      "align": "town",
+      "tags": [
+        "compulsive"
+      ]
+    },
+    {
+      "role": "paranoid-cop",
+      "count": 1,
+      "mods": [
+        "two-shot"
+      ],
+      "align": "town",
+      "tags": [
+        "compulsive"
+      ]
+    },
+    {
+      "role": "insane-cop",
+      "count": 1,
+      "mods": [
+        "two-shot"
+      ],
+      "align": "town",
+      "tags": [
+        "compulsive"
+      ]
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "mods": [
+        "two-shot"
+      ],
+      "align": "town",
+      "as": "Sane Cop",
+      "tags": [
+        "compulsive"
+      ]
+    }
+  ],
+  "randomize": null
+}

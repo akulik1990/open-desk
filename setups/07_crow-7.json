@@ -1,0 +1,36 @@
+{
+  "name": "Crow 7",
+  "players": 7,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/ZBVJKjYH",
+  "notes": "The inspector reads a coded 0/1 by alignment; the interpreter learns N1 which of 0/1 means mafia. The app resolves the inspector as a plain alignment check; hand the coded result over yourself.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town",
+      "as": "Inspector"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Interpreter"
+    },
+    {
+      "role": "vt",
+      "count": 3,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

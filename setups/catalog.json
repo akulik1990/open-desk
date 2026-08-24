@@ -1,0 +1,345 @@
+{
+  "roles": {
+    "vt": {
+      "name": "Vanilla Town",
+      "align": "town",
+      "cat": "vanilla",
+      "desc": "No ability."
+    },
+    "mafia": {
+      "name": "Mafia",
+      "align": "mafia",
+      "cat": "vanilla",
+      "desc": "Vanilla mafia, shares the factional kill."
+    },
+    "cop": {
+      "name": "Cop",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Each night, check a player and learn their alignment."
+    },
+    "naive-cop": {
+      "name": "Naive Cop",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Always returns TOWN."
+    },
+    "paranoid-cop": {
+      "name": "Paranoid Cop",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Always returns MAFIA."
+    },
+    "insane-cop": {
+      "name": "Insane Cop",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Returns the reversed result."
+    },
+    "rolecop": {
+      "name": "Rolecop",
+      "align": "mafia",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Each night, learn the target's exact role."
+    },
+    "parity-cop": {
+      "name": "Parity Cop",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Learn if the target is the same or different alignment to the previous check. Optional n0 seed."
+    },
+    "neapolitan": {
+      "name": "Neapolitan",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Learn whether the target is vanilla town or not."
+    },
+    "tracker": {
+      "name": "Tracker",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Learn who the target visited."
+    },
+    "watcher": {
+      "name": "Watcher",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Learn who visited the target."
+    },
+    "jailkeeper": {
+      "name": "Jailkeeper",
+      "align": "town",
+      "cat": "protective",
+      "act": "night-target",
+      "desc": "Roleblock and protect the target for the night."
+    },
+    "medic": {
+      "name": "Doctor",
+      "align": "town",
+      "cat": "protective",
+      "act": "night-target",
+      "desc": "Protect the target from one kill. May repeat the target."
+    },
+    "nerfed-medic": {
+      "name": "Nerfed Medic",
+      "align": "town",
+      "cat": "protective",
+      "act": "night-target",
+      "desc": "Protect from one kill. No self, no repeat on consecutive nights."
+    },
+    "bodyguard": {
+      "name": "Bodyguard",
+      "align": "town",
+      "cat": "protective",
+      "act": "night-target",
+      "desc": "Redirect kills aimed at the target onto yourself."
+    },
+    "bulletproof": {
+      "name": "Bulletproof Townie",
+      "align": "town",
+      "cat": "survival",
+      "act": "passive",
+      "desc": "Absorb a kill. Reflexive, cannot be roleblocked."
+    },
+    "vigilante": {
+      "name": "Vigilante",
+      "align": "town",
+      "cat": "killing",
+      "act": "night-target",
+      "desc": "Kill the target at night."
+    },
+    "sniper": {
+      "name": "Sniper",
+      "align": "town",
+      "cat": "killing",
+      "act": "day-target",
+      "desc": "Kill the target during the day."
+    },
+    "roleblocker": {
+      "name": "Roleblocker",
+      "align": "mafia",
+      "cat": "disruption",
+      "act": "night-target",
+      "desc": "Block the target's action for the night."
+    },
+    "mortician": {
+      "name": "Mortician",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Learn the alignment or role of a dead player."
+    },
+    "mason": {
+      "name": "Mason",
+      "align": "town",
+      "cat": "social",
+      "act": "chat",
+      "desc": "Shares a confirmed-town chat. The app only names the masons; the mod runs the chat."
+    },
+    "lover": {
+      "name": "Lover",
+      "align": "town",
+      "cat": "social",
+      "act": "linked",
+      "desc": "When one lover dies, the partner dies of lovesickness."
+    },
+    "heartbreaker": {
+      "name": "Heartbreaker",
+      "align": "mafia",
+      "cat": "killing",
+      "act": "night-target",
+      "desc": "On the heartbreaker's death, the last visited player dies."
+    },
+    "joat": {
+      "name": "Jack of All Trades",
+      "align": "town",
+      "cat": "utility",
+      "act": "night-pool",
+      "desc": "One action per night from a fixed pool, each usable once."
+    },
+    "mafia-joat": {
+      "name": "Mafia JOAT",
+      "align": "mafia",
+      "cat": "utility",
+      "act": "night-pool",
+      "desc": "Mafia jack of all trades."
+    },
+    "godfather": {
+      "name": "Godfather",
+      "align": "mafia",
+      "cat": "vanilla",
+      "act": "passive",
+      "desc": "Reads as town to investigation."
+    },
+    "strongman": {
+      "name": "Strongman",
+      "align": "mafia",
+      "cat": "killing",
+      "act": "night-kill",
+      "desc": "The factional kill cannot be saved."
+    },
+    "fruit-vendor": {
+      "name": "Fruit Vendor",
+      "align": "town",
+      "cat": "utility",
+      "act": "night-target",
+      "desc": "Send the target a fruit, appearing as a visit with no other effect."
+    },
+    "commuter": {
+      "name": "Commuter",
+      "align": "town",
+      "cat": "survival",
+      "act": "night-self",
+      "desc": "Leave town for the night, untargetable while away."
+    },
+    "universal-backup": {
+      "name": "Universal Backup",
+      "align": "town",
+      "cat": "utility",
+      "act": "passive",
+      "desc": "Inherit the first town power role that dies."
+    },
+    "neighbourizer": {
+      "name": "Neighbourizer",
+      "align": "town",
+      "cat": "social",
+      "act": "night-target",
+      "desc": "Put players into a neighbour chat. The app names them; the mod runs the chat."
+    },
+    "serial-killer": {
+      "name": "Serial Killer",
+      "align": "sk",
+      "cat": "killing",
+      "act": "night-target",
+      "desc": "Kills each night, wins alone."
+    },
+    "werewolf": {
+      "name": "Werewolf",
+      "align": "wolf",
+      "cat": "killing",
+      "act": "night-target",
+      "desc": "Wolf faction. A lone wolf plays as a serial killer."
+    },
+    "gunsmith": {
+      "name": "Gunsmith",
+      "align": "town",
+      "cat": "utility",
+      "act": "night-target",
+      "desc": "Hand the target a gun for the next day."
+    },
+    "mayor": {
+      "name": "Mayor",
+      "align": "town",
+      "cat": "utility",
+      "act": "day",
+      "desc": "Reveal to override one exile."
+    },
+    "innocent-child": {
+      "name": "Innocent Child",
+      "align": "town",
+      "cat": "utility",
+      "act": "day",
+      "desc": "Reveal as confirmed town."
+    },
+    "champion": {
+      "name": "Champion",
+      "align": "town",
+      "cat": "survival",
+      "act": "passive",
+      "desc": "Immune if alive at a final three."
+    },
+    "poisoner": {
+      "name": "Poisoner",
+      "align": "mafia",
+      "cat": "killing",
+      "act": "night-target",
+      "desc": "Poison the target; they die at end of day unless healed."
+    },
+    "poison-healer": {
+      "name": "Poison Healer",
+      "align": "town",
+      "cat": "protective",
+      "act": "day-target",
+      "desc": "Cure a poisoned player during the day."
+    },
+    "silencer": {
+      "name": "Silencer",
+      "align": "mafia",
+      "cat": "disruption",
+      "act": "night-target",
+      "desc": "Silence the target for the next day."
+    },
+    "dreamer": {
+      "name": "Dreamer",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-choice",
+      "desc": "Dream of one town name or three names including one mafia."
+    }
+  },
+  "mods": {
+    "one-shot": {
+      "name": "One-Shot",
+      "desc": "Usable once."
+    },
+    "two-shot": {
+      "name": "Two-Shot",
+      "desc": "Usable twice."
+    },
+    "three-shot": {
+      "name": "Three-Shot",
+      "desc": "Usable three times."
+    },
+    "day": {
+      "name": "Day",
+      "desc": "Acts during the day."
+    },
+    "odd-night": {
+      "name": "Odd-Night",
+      "desc": "Acts on odd nights only."
+    },
+    "even-night": {
+      "name": "Even-Night",
+      "desc": "Acts on even nights only."
+    },
+    "smart": {
+      "name": "Smart",
+      "desc": "Kill only lands on mafia; town survives."
+    },
+    "vengeful": {
+      "name": "Vengeful",
+      "desc": "On death, kill a chosen player."
+    },
+    "stupid": {
+      "name": "Stupid",
+      "desc": "Kill only lands on town; a mafia target survives."
+    }
+  },
+  "items": {
+    "gun": {
+      "name": "Gun",
+      "desc": "A day shot that expires at end of day if unused."
+    },
+    "vest": {
+      "name": "Vest",
+      "desc": "Absorbs one kill."
+    },
+    "poison": {
+      "name": "Poison",
+      "desc": "Kills at end of day unless healed."
+    },
+    "poison-heal": {
+      "name": "Poison Heal",
+      "desc": "Cancels a poison."
+    }
+  }
+}

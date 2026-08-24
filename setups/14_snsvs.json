@@ -1,0 +1,47 @@
+{
+  "name": "SNSVS",
+  "players": 14,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/eYA8TD9c",
+  "notes": "The samurai chain-shoots on death until it hits a town (smart shots), losing power on a claim, and cannot act if killed D1/N1. Run the chain by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 4,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "smart",
+        "vengeful"
+      ],
+      "tags": [
+        "novice",
+        "scared"
+      ],
+      "as": "Smart Novice Scared Vengeful Samurai"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "two-shot"
+      ],
+      "as": "Two-Shot Vigi"
+    },
+    {
+      "role": "vt",
+      "count": 8,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

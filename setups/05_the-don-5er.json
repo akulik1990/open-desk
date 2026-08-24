@@ -1,0 +1,44 @@
+{
+  "name": "The Don 5er",
+  "players": 5,
+  "start": "day",
+  "nightless": true,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 0,
+  "pastebin": "https://pastebin.com/raw/VHVPyKte",
+  "notes": "Special rule the app does not mechanise: if the Don is exiled on Day 1 the game ends and town wins. Hurried means the vengeful shots only work on Day 1 and Night 1.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "as": "Don"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "mods": [
+        "vengeful"
+      ],
+      "align": "mafia",
+      "as": "Hurried Vengeful Goon",
+      "tags": [
+        "hurried"
+      ]
+    },
+    {
+      "role": "vt",
+      "count": 3,
+      "mods": [
+        "vengeful"
+      ],
+      "align": "town",
+      "as": "Hurried Vengeful Town",
+      "tags": [
+        "hurried"
+      ]
+    }
+  ],
+  "randomize": null
+}

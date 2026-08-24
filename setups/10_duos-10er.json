@@ -1,0 +1,24 @@
+{
+  "name": "Duos 10er",
+  "players": 10,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/rgYG0GnG",
+  "notes": "Everyone is lifelinked in a mason pair (4 town duos, 1 mafia duo): when one of a pair dies the other dies too. Assign the pairs yourself; the linked deaths are pair-based, not the global lovers link, so the app does not auto-cascade them.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 8,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Aliens+",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/9RAq5ELz",
+  "notes": "As Aliens, with a champion who is immune if alive at a final three (including the N1 beam-up). Run the beam-up by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 3,
+      "align": "mafia",
+      "as": "Alien"
+    },
+    {
+      "role": "champion",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 7,
+      "align": "town",
+      "as": "Human"
+    }
+  ],
+  "randomize": null
+}

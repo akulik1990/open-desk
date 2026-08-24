@@ -1,0 +1,43 @@
+{
+  "name": "Wolf Pack",
+  "players": 9,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/7j39Cfy9",
+  "notes": "Bespoke location game: each night players pick forest, river, or village; the pack leader visits to kill town or recruit a lost wolf; howls are announced by location. Town wins when the pack leader dies; wolves win at parity. Run locations by hand.",
+  "roster": [
+    {
+      "role": "werewolf",
+      "count": 1,
+      "align": "wolf",
+      "as": "Pack Leader"
+    },
+    {
+      "role": "werewolf",
+      "count": 2,
+      "align": "wolf",
+      "as": "Lost Wolf"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Insomniac"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Wolf Hunter"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

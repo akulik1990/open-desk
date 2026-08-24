@@ -1,0 +1,56 @@
+{
+  "name": "New Lovesick 14",
+  "players": 14,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/Tixk15N9",
+  "notes": "The two masons are lovers from the start (linked death). The homewrecking vigi triggers no lover death, unless overridden by mafia KP.",
+  "roster": [
+    {
+      "role": "heartbreaker",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "medic",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "two-shot"
+      ],
+      "as": "EMT (Two-Shot Medic)"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd-Night Homewrecking Vigilante",
+      "tags": [
+        "homewrecking"
+      ]
+    },
+    {
+      "role": "lover",
+      "count": 2,
+      "align": "town",
+      "as": "Masons that are Lovers"
+    },
+    {
+      "role": "vt",
+      "count": 7,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

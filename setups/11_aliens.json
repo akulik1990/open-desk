@@ -1,0 +1,26 @@
+{
+  "name": "Aliens",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/qJRSUEyc",
+  "notes": "Bespoke: N1 the aliens beam up two humans and one alien to play a final three during the night; the result sets that night's KP. Run the beam-up mini-game by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 3,
+      "align": "mafia",
+      "as": "Alien"
+    },
+    {
+      "role": "vt",
+      "count": 8,
+      "align": "town",
+      "as": "Human"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Vengeance",
+  "players": 10,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/JM5zpQmi",
+  "notes": "The first mafia to die gets an immediate vengeful shot. The first smart hunter to die gets a smart vengeful shot (kills mafia, spares town); after that the second hunter becomes vanilla. Only the first death of each triggers, so resolve the shots by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia",
+      "tags": [
+        "first-death-shoots"
+      ]
+    },
+    {
+      "role": "vt",
+      "count": 2,
+      "align": "town",
+      "mods": [
+        "smart",
+        "vengeful"
+      ],
+      "as": "Smart Hunter"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

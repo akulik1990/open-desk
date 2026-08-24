@@ -1,0 +1,74 @@
+{
+  "name": "Lovesick 18er",
+  "players": 18,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/7HbYs7PR",
+  "notes": "The two masons are lovers (linked death). Vengefuls kill a chosen player on death. Run vengefuls by hand.",
+  "roster": [
+    {
+      "role": "heartbreaker",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "roleblocker",
+      "count": 1,
+      "align": "mafia",
+      "tags": [
+        "non-consec"
+      ]
+    },
+    {
+      "role": "rolecop",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "two-shot"
+      ]
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "vengeful"
+      ],
+      "as": "Vengeful Mafia"
+    },
+    {
+      "role": "medic",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "vengeful"
+      ],
+      "as": "Vengeful Town"
+    },
+    {
+      "role": "lover",
+      "count": 2,
+      "align": "town",
+      "as": "Masons that are Lovers"
+    },
+    {
+      "role": "vt",
+      "count": 9,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

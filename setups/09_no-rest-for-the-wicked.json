@@ -1,0 +1,29 @@
+{
+  "name": "No Rest for the Wicked",
+  "players": 9,
+  "start": "day",
+  "nightless": true,
+  "reveal": "full",
+  "sleepPunishment": true,
+  "mafiaKp": 0,
+  "pastebin": "https://pastebin.com/raw/wpqtNT6J",
+  "notes": "The mafia have a factional hasty silent day vigilante each day (first two minutes, no verbal cue). Sleep punishment: no exile grants a night kill. Run the factional day shot by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "mayor",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

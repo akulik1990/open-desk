@@ -1,0 +1,62 @@
+{
+  "name": "Lost in the Hood",
+  "players": 15,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/yqgr7CsR",
+  "notes": "The lost one-shot vigi is not part of the core mafia and inherits the factional KP if they all die. The heavy-handed's activated day gives a triple vote. Run the neighbourizer chats and heavy-handed by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 3,
+      "align": "mafia"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "one-shot"
+      ],
+      "tags": [
+        "lost",
+        "undercover"
+      ],
+      "as": "Lost One-shot Vigi"
+    },
+    {
+      "role": "joat",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "neighbourizer",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "two-shot"
+      ],
+      "tags": [
+        "compulsive"
+      ]
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ],
+      "as": "One-Shot Heavy-Handed"
+    },
+    {
+      "role": "vt",
+      "count": 8,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

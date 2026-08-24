@@ -1,0 +1,80 @@
+{
+  "name": "Firing Squad",
+  "players": 17,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/SxahK8ET",
+  "notes": "The thief steals an item being handed out or received; a back-up thief inherits it. Gunsmiths hand out day guns. Run the thief and day shots by hand.",
+  "roster": [
+    {
+      "role": "sniper",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "two-shot"
+      ],
+      "as": "Two-Shot Day Sniper"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "as": "Thief"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "tags": [
+        "backup"
+      ],
+      "as": "Back-up Thief"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "gunsmith",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "three-shot"
+      ],
+      "tags": [
+        "non-consec"
+      ]
+    },
+    {
+      "role": "gunsmith",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "two-shot"
+      ],
+      "tags": [
+        "non-consec"
+      ]
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "two-shot",
+        "day"
+      ],
+      "as": "Two-Shot Day Vigilante"
+    },
+    {
+      "role": "vt",
+      "count": 10,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

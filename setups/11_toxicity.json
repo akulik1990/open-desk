@@ -1,0 +1,65 @@
+{
+  "name": "Toxicity",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/x18S6Z9J",
+  "notes": "KP is controlled by the poisoner and goon; if both die it passes to the roleblocker. Poison kills at end of day unless the poison healer cures it.",
+  "roster": [
+    {
+      "role": "poisoner",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "one-shot"
+      ]
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "roleblocker",
+      "count": 1,
+      "align": "mafia",
+      "tags": [
+        "undercover",
+        "non-consec"
+      ]
+    },
+    {
+      "role": "tracker",
+      "count": 1,
+      "align": "town",
+      "tags": [
+        "non-consec"
+      ]
+    },
+    {
+      "role": "poisoner",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ]
+    },
+    {
+      "role": "poison-healer",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ]
+    },
+    {
+      "role": "vt",
+      "count": 5,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

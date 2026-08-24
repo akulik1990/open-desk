@@ -1,0 +1,216 @@
+{
+  "name": "Matrix14",
+  "players": 13,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://wiki.mafiascum.net/index.php?title=Matrix_14",
+  "notes": "The mod deals one random row, column, or diagonal, plus the base of 6 vanilla town and 1 mafia. Some lines are multiball: a pair of wolf cells forms a werewolf faction, a lone wolf cell plays as a serial killer.",
+  "roster": [],
+  "randomize": {
+    "mode": "matrix",
+    "lines": [
+      "rows",
+      "cols",
+      "diagonals"
+    ],
+    "base": [
+      {
+        "role": "vt",
+        "count": 6,
+        "align": "town"
+      },
+      {
+        "role": "mafia",
+        "count": 1,
+        "align": "mafia"
+      }
+    ],
+    "grid": [
+      [
+        {
+          "role": "mafia-joat",
+          "align": "mafia"
+        },
+        {
+          "role": "vt",
+          "align": "town"
+        },
+        {
+          "role": "jailkeeper",
+          "align": "town"
+        },
+        {
+          "role": "mafia",
+          "align": "mafia"
+        },
+        {
+          "role": "vt",
+          "align": "town"
+        },
+        {
+          "role": "tracker",
+          "align": "town"
+        }
+      ],
+      [
+        {
+          "role": "medic",
+          "align": "town"
+        },
+        {
+          "role": "watcher",
+          "mods": [
+            "odd-night"
+          ],
+          "align": "town",
+          "as": "Odd-Night Watcher"
+        },
+        {
+          "role": "vigilante",
+          "mods": [
+            "one-shot"
+          ],
+          "align": "town"
+        },
+        {
+          "role": "cop",
+          "mods": [
+            "one-shot"
+          ],
+          "align": "town"
+        },
+        {
+          "role": "mafia-joat",
+          "align": "mafia"
+        },
+        {
+          "role": "rolecop",
+          "align": "mafia"
+        }
+      ],
+      [
+        {
+          "role": "tracker",
+          "mods": [
+            "even-night"
+          ],
+          "align": "town",
+          "as": "Even-Night Tracker"
+        },
+        {
+          "role": "vt",
+          "align": "town"
+        },
+        {
+          "role": "rolecop",
+          "align": "mafia"
+        },
+        {
+          "role": "jailkeeper",
+          "align": "town"
+        },
+        {
+          "role": "fruit-vendor",
+          "align": "town"
+        },
+        {
+          "role": "strongman",
+          "mods": [
+            "two-shot"
+          ],
+          "align": "mafia"
+        }
+      ],
+      [
+        {
+          "role": "commuter",
+          "mods": [
+            "two-shot"
+          ],
+          "align": "town"
+        },
+        {
+          "role": "roleblocker",
+          "align": "mafia"
+        },
+        {
+          "role": "mafia",
+          "align": "mafia"
+        },
+        {
+          "role": "vt",
+          "align": "town"
+        },
+        {
+          "role": "watcher",
+          "align": "town"
+        },
+        {
+          "role": "universal-backup",
+          "align": "town"
+        }
+      ],
+      [
+        {
+          "role": "werewolf",
+          "align": "wolf",
+          "as": "Wolf Goon / SK"
+        },
+        {
+          "role": "bodyguard",
+          "align": "town"
+        },
+        {
+          "role": "vt",
+          "align": "town"
+        },
+        {
+          "role": "godfather",
+          "align": "mafia"
+        },
+        {
+          "role": "cop",
+          "align": "town"
+        },
+        {
+          "role": "vt",
+          "align": "town"
+        }
+      ],
+      [
+        {
+          "role": "werewolf",
+          "align": "wolf",
+          "as": "Wolf JOAT / SK"
+        },
+        {
+          "role": "werewolf",
+          "align": "wolf",
+          "as": "Wolf Goon / SK"
+        },
+        {
+          "role": "neighbourizer",
+          "align": "town"
+        },
+        {
+          "role": "cop",
+          "mods": [
+            "one-shot"
+          ],
+          "align": "town"
+        },
+        {
+          "role": "roleblocker",
+          "align": "mafia"
+        },
+        {
+          "role": "medic",
+          "align": "town"
+        }
+      ]
+    ]
+  }
+}

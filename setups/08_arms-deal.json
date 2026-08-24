@@ -1,0 +1,41 @@
+{
+  "name": "Arms Deal",
+  "players": 8,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/hWpKcktf",
+  "notes": "The lone wolf malfunctioning gunsmith wins alone; its gun kills the shooter. The grenadier passes a grenade that explodes on the final pass, hiding alignment. Both bespoke, run by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "gunsmith",
+      "count": 1,
+      "align": "sk",
+      "as": "Lone Wolf Malfunctioning Gunsmith"
+    },
+    {
+      "role": "gunsmith",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Grenadier"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,43 @@
+{
+  "name": "Stupid Setup",
+  "players": 8,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/2GTrXTQE",
+  "notes": "The stupid vigi's shot is compulsive on N1 and one-shot; the console resolves it (kills town, spares mafia). If the vigi dies N1 the shot has no effect. The slow learner is a named vanilla town told their role on N1.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot",
+        "stupid"
+      ],
+      "tags": [
+        "compulsive"
+      ],
+      "as": "Stupid Vigi"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Slow Learner"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

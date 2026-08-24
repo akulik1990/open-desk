@@ -1,0 +1,40 @@
+{
+  "name": "Vulture 7",
+  "players": 7,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/PTwrBcTm",
+  "notes": "The uninformed cop enabler is not told their role; while alive the cop gets results, and its death silences the cop. Track the enabler by hand.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town",
+      "as": "Uninformed Cop Enabler"
+    },
+    {
+      "role": "mortician",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 2,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

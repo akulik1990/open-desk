@@ -1,0 +1,34 @@
+{
+  "name": "Ostrich 7",
+  "players": 7,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/5tB7t2VV",
+  "notes": "",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "neapolitan",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "champion",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 3,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Pick Your Poison 12er",
+  "players": 12,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "https://pastebin.com/raw/ku0LrwgQ",
+  "notes": "Bespoke draft: N0 a random mafia captain picks the odd-night vigi and even-night roleblocker, then drafts 3 of 7 town power roles (parity cop, vested bodyguard, two-shot vigi, mason duo, JOAT, smart hunter, dreamer) randomly among the town. Run the draft by hand.",
+  "roster": [
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd-Night Vigi"
+    },
+    {
+      "role": "roleblocker",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "even-night"
+      ]
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "as": "Captain"
+    },
+    {
+      "role": "vt",
+      "count": 9,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}
