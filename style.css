@@ -15,6 +15,7 @@ body:has([v-cloak])::before { content: "loading…"; display: block; padding: 2r
 :root[data-theme="nord"] { --ink:#21262f; --panel:#2b313c; --panel2:#373f4d; --line:#4c566a; --text:#eceff4; --muted:#9aa8bf; --accent:#88c0d0; --maf:#d0767f; --town:#81a1c1; --sk:#ebcb8b; --wolf:#b48ead; --good:#a3be8c; }
 :root[data-theme="tokyonight"] { --ink:#16161e; --panel:#1a1b26; --panel2:#292e42; --line:#3b4261; --text:#c0caf5; --muted:#565f89; --accent:#7aa2f7; --maf:#f7768e; --town:#7dcfff; --sk:#e0af68; --wolf:#bb9af7; --good:#9ece6a; }
 :root[data-theme="kanagawa"] { --ink:#16161d; --panel:#1f1f28; --panel2:#2a2a37; --line:#363646; --text:#dcd7ba; --muted:#727169; --accent:#e6c384; --maf:#e82424; --town:#7e9cd8; --sk:#e6c384; --wolf:#957fb8; --good:#98bb6c; }
+:root[data-theme="moss"] { --ink:#12150c; --panel:#1a1f10; --panel2:#242b16; --line:#53652a; --text:#e6e8d8; --muted:#8a9370; --accent:#9fb275; --maf:#c96a52; --town:#85a8c8; --sk:#d9b04d; --wolf:#a98bc9; --good:#b4cf8a; }
 
 :root[data-font="plain"] { --serif: var(--sans); }
 :root[data-font="serif"] { --sans: Georgia, "Times New Roman", serif; }
