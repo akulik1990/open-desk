@@ -16,6 +16,9 @@ body:has([v-cloak])::before { content: "loading…"; display: block; padding: 2r
 :root[data-theme="tokyonight"] { --ink:#16161e; --panel:#1a1b26; --panel2:#292e42; --line:#3b4261; --text:#c0caf5; --muted:#565f89; --accent:#7aa2f7; --maf:#f7768e; --town:#7dcfff; --sk:#e0af68; --wolf:#bb9af7; --good:#9ece6a; }
 :root[data-theme="kanagawa"] { --ink:#16161d; --panel:#1f1f28; --panel2:#2a2a37; --line:#363646; --text:#dcd7ba; --muted:#727169; --accent:#e6c384; --maf:#e82424; --town:#7e9cd8; --sk:#e6c384; --wolf:#957fb8; --good:#98bb6c; }
 :root[data-theme="moss"] { --ink:#12150c; --panel:#1a1f10; --panel2:#242b16; --line:#53652a; --text:#e6e8d8; --muted:#8a9370; --accent:#9fb275; --maf:#c96a52; --town:#85a8c8; --sk:#d9b04d; --wolf:#a98bc9; --good:#b4cf8a; }
+:root[data-theme="fern"] { --ink:#131417; --panel:#1a1c21; --panel2:#23262d; --line:#53652a; --text:#dfe2e6; --muted:#8b9199; --accent:#9fb275; --maf:#d97b6c; --town:#7ea9d1; --sk:#d9b04d; --wolf:#a98bc9; --good:#b4cf8a; }
+:root[data-theme="lichen"] { --ink:#171512; --panel:#201c18; --panel2:#2a2620; --line:#53652a; --text:#eae4d6; --muted:#9a9180; --accent:#9fb275; --maf:#c96a52; --town:#84a7c6; --sk:#d9a441; --wolf:#b08cc9; --good:#b4cf8a; }
+:root[data-theme="meadow"] { --ink:#f1efe7; --panel:#faf9f4; --panel2:#e7e4d8; --line:#9fb275; --text:#26231c; --muted:#7a7767; --accent:#53652a; --maf:#b0432f; --town:#33628f; --sk:#8a6d1a; --wolf:#6d4e91; --good:#5d7a2c; }
 
 :root[data-font="plain"] { --serif: var(--sans); }
 :root[data-font="serif"] { --sans: Georgia, "Times New Roman", serif; }
