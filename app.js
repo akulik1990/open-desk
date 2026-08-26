@@ -496,6 +496,15 @@ const app = Vue.createApp({
             let targets = names.filter((x) => x !== p.name);
             if (c.mortician) targets = this.game.players.filter((q) => before.has(q.name)).map((q) => q.name);
             if (c.commuter) targets = ["(commute)"];
+            if (p.role === "nerfed-medic") {
+              const last = this.night(n - 1);
+              const prev = last && last.acts && last.acts[p.name];
+              if (prev) targets = targets.filter((x) => x !== prev);
+            }
+            if (p.role === "parity-cop") {
+              const seen = new Set(priorN.map((x) => x.acts && x.acts[p.name]).filter(Boolean));
+              targets = targets.filter((x) => !seen.has(x));
+            }
             return {
               name: p.name, role: this.instName(p), desc: this.roleDesc(p),
               forceable: !!(c.nightKiller || c.poisoner || (c.joat && (nd.modes || {})[p.name] === "shoot")),
