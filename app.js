@@ -124,14 +124,14 @@
     const working = (p) => !blocked.has(p.name);
 
     const commuting = new Set();
-    const protectedOf = new Set();
+    const savesOn = {};
     const redirect = new Map();
     for (const [p, c] of cs) {
       if (!working(p) || !can(p)) continue;
       const t = acts[p.name];
       if (c.commuter) { commuting.add(p.name); continue; }
       if (!act(t)) continue;
-      if (c.protector || joatAs(p, "save")) protectedOf.add(t);
+      if (c.protector || joatAs(p, "save")) savesOn[t] = (savesOn[t] || 0) + 1;
       if (c.bodyguard) redirect.set(t, p.name);
     }
 
@@ -162,7 +162,7 @@
       if (!vp || before.has(victim) || commuting.has(victim)) continue;
       if (s.smart && vp.align === "town") continue;
       if (s.stupid && vp.align !== "town") continue;
-      if (!s.unsaveable && protectedOf.has(victim)) continue;
+      if (!s.unsaveable && savesOn[victim] > 0) { savesOn[victim]--; continue; }
       if (caps(vp).absorbs && !absorbUsed.has(victim)) { absorbUsed.add(victim); continue; }
       deaths.add(victim);
     }
