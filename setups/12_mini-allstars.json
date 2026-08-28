@@ -7,10 +7,10 @@
   "sleepPunishment": false,
   "mafiaKp": 1,
   "pastebin": "",
-  "notes": "The sniper's shot may doublestack with the mafia KP. Sheet note: the jailor cannot target the same player consecutively — confirm whether the medic here is a non-consec jailkeeper.",
+  "notes": "The sniper's night shot may doublestack with the mafia KP to beat a save.",
   "roster": [
     {
-      "role": "sniper",
+      "role": "vigilante",
       "count": 1,
       "align": "mafia",
       "mods": [
@@ -29,7 +29,7 @@
       "align": "town"
     },
     {
-      "role": "medic",
+      "role": "nerfed-medic",
       "count": 1,
       "align": "town"
     },
