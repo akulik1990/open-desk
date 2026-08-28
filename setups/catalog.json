@@ -117,13 +117,6 @@
       "act": "night-target",
       "desc": "Kill the target at night."
     },
-    "sniper": {
-      "name": "Sniper",
-      "align": "town",
-      "cat": "killing",
-      "act": "day-target",
-      "desc": "Kill the target during the day."
-    },
     "roleblocker": {
       "name": "Roleblocker",
       "align": "mafia",

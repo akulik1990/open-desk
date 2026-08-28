@@ -10,11 +10,12 @@
   "notes": "The thief steals an item being handed out or received; a back-up thief inherits it. Gunsmiths hand out day guns. Run the thief and day shots by hand.",
   "roster": [
     {
-      "role": "sniper",
+      "role": "vigilante",
       "count": 1,
       "align": "mafia",
       "mods": [
-        "two-shot"
+        "two-shot",
+        "day"
       ],
       "as": "Two-Shot Day Sniper"
     },

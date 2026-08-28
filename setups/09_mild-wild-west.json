@@ -10,12 +10,13 @@
   "notes": "",
   "roster": [
     {
-      "role": "sniper",
+      "role": "vigilante",
       "count": 1,
       "align": "mafia",
       "as": "Sniper",
       "mods": [
-        "one-shot"
+        "one-shot",
+        "day"
       ]
     },
     {

@@ -40,12 +40,12 @@
     return shuffle(names, rnd).map((name, i) => ({ seat: i + 1, name, ...roles[i] }));
   }
 
-  const KILLERS = new Set(["vigilante", "sniper", "serial-killer", "werewolf"]);
+  const KILLERS = new Set(["vigilante", "serial-killer", "werewolf"]);
   const COPS = { cop: "sane", "naive-cop": "naive", "paranoid-cop": "paranoid", "insane-cop": "insane", "parity-cop": "parity", neapolitan: "neapolitan", rolecop: "role" };
   const VISITORS = new Set(["fruit-vendor", "silencer", "neighbourizer", "heartbreaker"]);
   function caps(p) {
     const r = p.role;
-    const dayOnly = r === "sniper" || has(p, "day");
+    const dayOnly = has(p, "day");
     return {
       protector: ["medic", "nerfed-medic", "jailkeeper"].includes(r),
       bodyguard: r === "bodyguard",

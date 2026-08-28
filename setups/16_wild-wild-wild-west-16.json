@@ -15,11 +15,12 @@
       "align": "mafia"
     },
     {
-      "role": "sniper",
+      "role": "vigilante",
       "count": 1,
       "align": "mafia",
       "mods": [
-        "one-shot"
+        "one-shot",
+        "day"
       ],
       "as": "One-Shot Sniper"
     },
