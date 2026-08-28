@@ -1,0 +1,47 @@
+{
+  "name": "Dueling Vigis",
+  "players": 10,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "",
+  "notes": "While the sniper is alive the mafia have 2 KP on even nights — the second kill is the sniper's own shot, recorded on their row.",
+  "roster": [
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "even-night"
+      ],
+      "as": "Even Night Sniper"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "medic",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "odd-night"
+      ],
+      "as": "Odd Night Vigi"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}
