@@ -1,0 +1,28 @@
+{
+  "name": "Lovers Quarrel",
+  "players": 10,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "",
+  "notes": "All lovers are bound in pairs the mod assigns; when one of a pair dies the partner dies too. Pairs are yours to track — record the partner death with + event.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 8,
+      "align": "town",
+      "as": "Starcross Lover",
+      "tags": [
+        "paired"
+      ]
+    }
+  ],
+  "randomize": null
+}

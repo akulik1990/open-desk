@@ -1,0 +1,48 @@
+{
+  "name": "Heartbreaker",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "",
+  "notes": "When the Heartbreaker dies, the player they last visited dies too (record with + event); the medic cannot prevent that kill. The lover pair dies together — that one the app handles.",
+  "roster": [
+    {
+      "role": "heartbreaker",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "nerfed-medic",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ]
+    },
+    {
+      "role": "lover",
+      "count": 2,
+      "align": "town",
+      "as": "Lovers"
+    },
+    {
+      "role": "vt",
+      "count": 5,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,42 @@
+{
+  "name": "The Godfather",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "",
+  "notes": "The Godfather does not know their role and reads town to checks. The mafia must keep him alive: if he dies, mafia lose — end the game by hand when that happens.",
+  "roster": [
+    {
+      "role": "godfather",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "nerfed-medic",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ]
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

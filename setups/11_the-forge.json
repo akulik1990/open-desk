@@ -1,0 +1,35 @@
+{
+  "name": "The Forge",
+  "players": 11,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "",
+  "notes": "The Fabricator hands out fake guns. When a fake gun is fired: set the shot to no effect and record the shooter's death with + event — the gun explodes.",
+  "roster": [
+    {
+      "role": "gunsmith",
+      "count": 1,
+      "align": "mafia",
+      "as": "Fabricator"
+    },
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "gunsmith",
+      "count": 2,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

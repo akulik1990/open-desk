@@ -1,0 +1,34 @@
+{
+  "name": "Hunters",
+  "players": 10,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "",
+  "notes": "A hunter shoots a player on death: mafia dies, town survives. Only one hunter may fire per game — if the second dies later, no shot. Record the shot with + event.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "vt",
+      "count": 2,
+      "align": "town",
+      "mods": [
+        "smart",
+        "vengeful"
+      ],
+      "as": "Town Hunter"
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

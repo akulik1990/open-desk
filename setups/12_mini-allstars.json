@@ -1,0 +1,51 @@
+{
+  "name": "Mini Allstars",
+  "players": 12,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "pastebin": "",
+  "notes": "The sniper's shot may doublestack with the mafia KP. Sheet note: the jailor cannot target the same player consecutively — confirm whether the medic here is a non-consec jailkeeper.",
+  "roster": [
+    {
+      "role": "sniper",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "one-shot"
+      ],
+      "as": "Sniper"
+    },
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "parity-cop",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "medic",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vigilante",
+      "count": 1,
+      "align": "town",
+      "mods": [
+        "one-shot"
+      ]
+    },
+    {
+      "role": "vt",
+      "count": 6,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}
