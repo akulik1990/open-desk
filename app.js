@@ -421,7 +421,9 @@ const app = Vue.createApp({
       return m;
     },
     live() {
-      const al = E.alive(this.game.players, this.deadSet);
+      const t = this.timeline, ns = this.game.nights.map((x) => x.n);
+      const dead = t && ns.length ? t.beforeDay[Math.max(...ns)] || new Set() : new Set();
+      const al = E.alive(this.game.players, dead);
       const threat = al.filter((p) => E.HOSTILE.has(p.align)).length;
       return { total: al.length, threat, town: al.length - threat, majority: Math.floor(al.length / 2) + 1 };
     },
