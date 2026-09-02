@@ -13,10 +13,11 @@
     <span class="sub">open-setup moderator console</span>
     <div class="mast-right">
       <div v-if="route==='console' && game.phase==='play'" class="stats">
-        <div class="stat"><span class="stat-label">Town</span><span class="stat-val town">{{ live.town }}</span></div>
-        <div class="stat"><span class="stat-label">Mafia</span><span class="stat-val maf">{{ live.threat }}</span></div>
+        <div class="stat"><span class="stat-label">Day</span><span class="stat-val">{{ live.day }}</span></div>
         <div class="stat"><span class="stat-label">Alive</span><span class="stat-val">{{ live.total }}</span></div>
         <div class="stat"><span class="stat-label">Lynch</span><span class="stat-val">{{ live.majority }}</span></div>
+        <div class="stat"><span class="stat-label">Town</span><span class="stat-val town">{{ live.town }}</span></div>
+        <div class="stat"><span class="stat-label">Mafia</span><span class="stat-val maf">{{ live.threat }}</span></div>
       </div>
       <details class="settings">
         <summary>⚙ Display</summary>

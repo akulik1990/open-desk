@@ -425,7 +425,8 @@ const app = Vue.createApp({
       const dead = t && ns.length ? t.beforeNight[Math.max(...ns)] || new Set() : new Set();
       const al = E.alive(this.game.players, dead);
       const threat = al.filter((p) => E.HOSTILE.has(p.align)).length;
-      return { total: al.length, threat, town: al.length - threat, majority: Math.floor(al.length / 2) + 1 };
+      const day = ns.length ? Math.max(1, Math.max(...ns)) : 1;
+      return { total: al.length, threat, town: al.length - threat, majority: Math.floor(al.length / 2) + 1, day };
     },
     revealText() {
       const groups = {};
