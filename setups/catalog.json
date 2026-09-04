@@ -277,6 +277,20 @@
       "cat": "investigative",
       "act": "night-choice",
       "desc": "Dream of one town name or three names including one mafia."
+    },
+    "sorcerer": {
+      "name": "Sorcerer",
+      "align": "mafia",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Each night, learn whether the target is the Cop. Reads as town to investigation."
+    },
+    "parity-champion": {
+      "name": "Parity Champion",
+      "align": "town",
+      "cat": "survival",
+      "act": "passive",
+      "desc": "Town wins if the mafia only reach parity while the Champion lives."
     }
   },
   "mods": {

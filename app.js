@@ -41,7 +41,7 @@
   }
 
   const KILLERS = new Set(["vigilante", "serial-killer", "werewolf"]);
-  const COPS = { cop: "sane", "naive-cop": "naive", "paranoid-cop": "paranoid", "insane-cop": "insane", "parity-cop": "parity", neapolitan: "neapolitan", rolecop: "role" };
+  const COPS = { cop: "sane", "naive-cop": "naive", "paranoid-cop": "paranoid", "insane-cop": "insane", "parity-cop": "parity", neapolitan: "neapolitan", rolecop: "role", sorcerer: "seeker" };
   const VISITORS = new Set(["fruit-vendor", "silencer", "neighbourizer", "heartbreaker"]);
   function caps(p) {
     const r = p.role;
@@ -64,7 +64,8 @@
       poisoner: r === "poisoner",
       poisonHealer: r === "poison-healer",
       strongman: r === "strongman",
-      godfather: r === "godfather",
+      godfather: r === "godfather" || r === "sorcerer",
+      parityChamp: r === "parity-champion",
       absorbs: r === "bulletproof" || (p.items || []).includes("vest"),
       linked: r === "lover",
       vengeful: has(p, "vengeful") || r === "heartbreaker",
@@ -100,8 +101,11 @@
     if (!threats.length) return "Town";
     const byFaction = {};
     for (const p of threats) byFaction[p.align] = (byFaction[p.align] || 0) + 1;
-    for (const [f, c] of Object.entries(byFaction))
-      if (c >= live.length - c) return f[0].toUpperCase() + f.slice(1);
+    for (const [f, c] of Object.entries(byFaction)) {
+      if (c < live.length - c) continue;
+      if (f === "mafia" && c === live.length - c && live.some((p) => caps(p).parityChamp)) return "Town";
+      return f[0].toUpperCase() + f.slice(1);
+    }
     return null;
   }
 
@@ -211,6 +215,7 @@
   function copResult(kind, cop, target, targetName, priorNights, players) {
     if (kind === "role") return { kind: "role", target: targetName, role: target ? (target.as || target.role) : "?" };
     if (kind === "neapolitan") return { kind: "neapolitan", target: targetName, result: target && target.role === "vt" && target.align === "town" ? "vanilla" : "not vanilla" };
+    if (kind === "seeker") return { kind: "seeker", target: targetName, result: target && target.align === "town" && COPS[target.role] ? "THE COP" : "not the cop" };
     let real = target ? readsAs(target) : "town";
     if (kind === "naive") real = "town";
     else if (kind === "paranoid") real = "mafia";
@@ -804,6 +809,7 @@ const app = Vue.createApp({
       if (r.kind === "parity") return r.vs ? `${r.target} is ${r.result} to ${r.vs}` : `${r.target}: first check, no result`;
       if (r.kind === "role") return `${r.target} is ${r.role}`;
       if (r.kind === "neapolitan") return `${r.target} is ${r.result}`;
+      if (r.kind === "seeker") return `${r.target} is ${r.result}`;
       if (r.kind === "tracker") return r.visited ? `${r.target} visited ${r.visited}` : `${r.target} did not visit anyone`;
       if (r.kind === "watcher") return r.visitors.length ? `${r.target} was visited by ${r.visitors.join(", ")}` : `${r.target} was not visited`;
       return `${r.target}`;
