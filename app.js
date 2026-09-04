@@ -650,6 +650,7 @@ const app = Vue.createApp({
     cleanDraft() {
       const d = JSON.parse(JSON.stringify(this.draft));
       delete d.importText;
+      if (typeof d.n0Kp !== "number") delete d.n0Kp;
       if (d.roster) d.roster = d.roster.map((e) => {
         const o = { role: e.role, count: e.count, align: e.align };
         if (e.mods && e.mods.length) o.mods = e.mods;

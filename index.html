@@ -130,6 +130,7 @@
         <label class="field2">Reveal on death <select v-model="draft.reveal"><option>full</option><option>none</option></select></label>
         <label class="field2">Mafia KP <input type="number" min="0" max="4" v-model.number="draft.mafiaKp"></label>
         <label class="field2">Steps down at ≤ N mafia (0 = constant) <input type="number" min="0" max="6" v-model.number="draft.kpTill"></label>
+        <label class="field2">Night 0 KP (blank = same) <input type="number" min="0" max="4" v-model.number="draft.n0Kp" placeholder="same"></label>
         <label class="field2">Day votes <input type="number" min="1" max="4" v-model.number="draft.dayVotes"></label>
       </div>
       <p class="note">{{ kpLabel(draft) }}</p>
@@ -352,6 +353,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>
