@@ -10,13 +10,38 @@
   "kpTill": 0,
   "dayVotes": 1,
   "pastebin": "https://pastebin.com/raw/XJ33Nxsw",
-  "notes": "Night 0 is checks only, no mafia kill. If the Don is exiled on day 1 the game ends and town wins - call that by hand. The cop's MAFIA result is the Don; the Sorcerer reads town. The Champion beats the mafia at parity: the engine calls town instead of mafia when parity is reached with the Champion alive.",
+  "notes": "Night 0 is checks only, no mafia kill. If the Don is exiled on day 1 the game ends and town wins - the engine calls it. The cop's MAFIA result is the Don; the Sorcerer reads town. The Champion beats the mafia at parity: the engine calls town instead of mafia when parity is reached with the Champion alive.",
   "roster": [
-    { "role": "mafia", "count": 1, "align": "mafia", "as": "Don" },
-    { "role": "sorcerer", "count": 1, "align": "mafia" },
-    { "role": "cop", "count": 1, "align": "town" },
-    { "role": "parity-champion", "count": 1, "align": "town", "as": "Champion" },
-    { "role": "vt", "count": 1, "align": "town" }
+    {
+      "role": "mafia",
+      "count": 1,
+      "align": "mafia",
+      "as": "Don",
+      "mods": [
+        "d1loss"
+      ]
+    },
+    {
+      "role": "sorcerer",
+      "count": 1,
+      "align": "mafia"
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "parity-champion",
+      "count": 1,
+      "align": "town",
+      "as": "Champion"
+    },
+    {
+      "role": "vt",
+      "count": 1,
+      "align": "town"
+    }
   ],
   "randomize": null
 }

@@ -66,6 +66,7 @@
       strongman: r === "strongman",
       godfather: r === "godfather" || r === "sorcerer",
       parityChamp: r === "parity-champion",
+      d1Loss: has(p, "d1loss"),
       absorbs: r === "bulletproof" || (p.items || []).includes("vest"),
       linked: r === "lover",
       vengeful: has(p, "vengeful") || r === "heartbreaker",
@@ -271,7 +272,11 @@
           if (actor && target && !dead.has(actor) && !dead.has(target) && (d.shotForce || {})[actor] !== "none")
             die(target, dayDeaths[n]);
         let lynched = false;
-        for (const v of votes[n] || []) if (v && !dead.has(v)) { die(v, dayDeaths[n]); lynched = true; }
+        for (const v of votes[n] || []) if (v && !dead.has(v)) {
+          die(v, dayDeaths[n]); lynched = true;
+          if (n === 1 && caps(byName(players, v)).d1Loss)
+            for (const q of players) if (HOSTILE.has(q.align)) die(q.name, dayDeaths[n]);
+        }
         if (setup.sleepPunishment && !lynched && d.sleepKill) die(d.sleepKill, dayDeaths[n]);
         for (const e of d.events || []) if (e.kind === "death" && e.who) die(e.who, dayDeaths[n]);
       }

@@ -329,6 +329,10 @@
     "stupid": {
       "name": "Stupid",
       "desc": "Kill only lands on town; a mafia target survives."
+    },
+    "d1loss": {
+      "name": "Day-1 Loss",
+      "desc": "If exiled on day 1, their whole faction dies with them and the game ends."
     }
   },
   "items": {
