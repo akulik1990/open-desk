@@ -13,13 +13,9 @@
   "notes": "Night 0 is checks only, no mafia kill. If the Don is exiled on day 1 the game ends and town wins - the engine calls it. The cop's MAFIA result is the Don; the Sorcerer reads town. The Champion beats the mafia at parity: the engine calls town instead of mafia when parity is reached with the Champion alive.",
   "roster": [
     {
-      "role": "mafia",
+      "role": "don",
       "count": 1,
-      "align": "mafia",
-      "as": "Don",
-      "mods": [
-        "d1loss"
-      ]
+      "align": "mafia"
     },
     {
       "role": "sorcerer",

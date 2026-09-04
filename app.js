@@ -66,7 +66,7 @@
       strongman: r === "strongman",
       godfather: r === "godfather" || r === "sorcerer",
       parityChamp: r === "parity-champion",
-      d1Loss: has(p, "d1loss"),
+      d1Loss: r === "don",
       absorbs: r === "bulletproof" || (p.items || []).includes("vest"),
       linked: r === "lover",
       vengeful: has(p, "vengeful") || r === "heartbreaker",

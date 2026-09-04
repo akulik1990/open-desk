@@ -10,13 +10,9 @@
   "notes": "If the Don is exiled Day 1 the game ends and town wins - the engine calls it. Hurried means the vengeful shots only work on Day 1 and Night 1.",
   "roster": [
     {
-      "role": "mafia",
+      "role": "don",
       "count": 1,
-      "align": "mafia",
-      "as": "Don",
-      "mods": [
-        "d1loss"
-      ]
+      "align": "mafia"
     },
     {
       "role": "mafia",

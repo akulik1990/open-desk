@@ -291,6 +291,12 @@
       "cat": "survival",
       "act": "passive",
       "desc": "Town wins if the mafia only reach parity while the Champion lives."
+    },
+    "don": {
+      "name": "Don",
+      "align": "mafia",
+      "cat": "vanilla",
+      "desc": "Vanilla mafia, shares the factional kill. If exiled on day 1, the mafia lose and the game ends."
     }
   },
   "mods": {
@@ -329,10 +335,6 @@
     "stupid": {
       "name": "Stupid",
       "desc": "Kill only lands on town; a mafia target survives."
-    },
-    "d1loss": {
-      "name": "Day-1 Loss",
-      "desc": "If exiled on day 1, their whole faction dies with them and the game ends."
     }
   },
   "items": {
