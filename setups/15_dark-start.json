@@ -8,7 +8,7 @@
   "mafiaKp": 2,
   "kpTill": 2,
   "pastebin": "https://gist.github.com/takethedraw/8afdac8491277cd5f69eae00e21fe63e",
-  "notes": "2 KP compulsory, no death reveals. One of three sub-setups is rolled at random; one mafia carries the corrupted PR power, the other two are vanilla. The split vigilante may not stack on the factional KP.",
+  "notes": "2 KP compulsory, no death reveals. One of three sub-setups is rolled at random. The corrupted power belongs to the mafia as a faction, not to any player; the console records its use under one mafia row for bookkeeping only, and the reveal shows three plain Mafia. The split vigilante may not stack on the factional KP.",
   "randomize": {
     "mode": "oneOf",
     "options": [
@@ -17,7 +17,10 @@
           "role": "rolecop",
           "count": 1,
           "align": "mafia",
-          "as": "Rolecop (corrupted power)"
+          "as": "Mafia",
+          "tags": [
+            "team power: rolecop check"
+          ]
         },
         {
           "role": "mafia",
@@ -59,7 +62,10 @@
           "mods": [
             "one-shot"
           ],
-          "as": "Roleblocker (corrupted power)"
+          "as": "Mafia",
+          "tags": [
+            "team power: one-shot roleblock"
+          ]
         },
         {
           "role": "mafia",
@@ -101,7 +107,10 @@
           "mods": [
             "one-shot"
           ],
-          "as": "Split Vigilante (corrupted power)"
+          "as": "Mafia",
+          "tags": [
+            "team power: one-shot split vigi"
+          ]
         },
         {
           "role": "mafia",

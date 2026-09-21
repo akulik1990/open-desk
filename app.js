@@ -473,7 +473,8 @@ const app = Vue.createApp({
             .filter((p) => granted.has(p.name) || (E.caps(p).dayKiller && this.dayShotsLeft(p, n) > 0))
             .map((p) => ({ name: p.name, role: this.instName(p) + (granted.has(p.name) ? " (gun)" : ""), targets: aliveD.filter((x) => x !== p.name) }));
           out.push({ key: "d" + n, type: "day", n, decided,
-            slots: setup.dayVotes || 1, alive: aliveD, owed, healers, shooters, sleep: !!setup.sleepPunishment });
+            slots: setup.votesTill && aliveD.length <= setup.votesTill ? 1 : setup.dayVotes || 1,
+            alive: aliveD, owed, healers, shooters, sleep: !!setup.sleepPunishment });
         }
         if (setup.nightless) continue;
         const before = t.beforeNight[n] || new Set();
@@ -651,6 +652,7 @@ const app = Vue.createApp({
       const d = JSON.parse(JSON.stringify(this.draft));
       delete d.importText;
       if (typeof d.n0Kp !== "number") delete d.n0Kp;
+      if (typeof d.votesTill !== "number" || !d.votesTill) delete d.votesTill;
       if (d.roster) d.roster = d.roster.map((e) => {
         const o = { role: e.role, count: e.count, align: e.align };
         if (e.mods && e.mods.length) o.mods = e.mods;

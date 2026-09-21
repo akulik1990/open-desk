@@ -1,0 +1,23 @@
+{
+  "name": "Gunsmith 17er",
+  "players": 17,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 2,
+  "kpTill": 2,
+  "dayVotes": 2,
+  "votesTill": 15,
+  "pastebin": "",
+  "notes": "Two lynches per day while more than 15 are alive (in practice day 1), then one. 2 KP, stepping down to 1 at 2 mafia.",
+  "roster": [
+    { "role": "mafia", "count": 4, "align": "mafia" },
+    { "role": "parity-cop", "count": 1, "align": "town" },
+    { "role": "nerfed-medic", "count": 1, "align": "town" },
+    { "role": "gunsmith", "count": 1, "align": "town", "mods": ["two-shot"] },
+    { "role": "mortician", "count": 1, "align": "town", "mods": ["two-shot"] },
+    { "role": "vt", "count": 9, "align": "town" }
+  ],
+  "randomize": null
+}
