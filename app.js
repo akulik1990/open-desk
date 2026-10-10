@@ -461,6 +461,12 @@ const app = Vue.createApp({
       const aliveNames = (dead) => E.alive(this.game.players, dead).map((p) => p.name);
       for (const nd of [...this.game.nights].sort((a, b) => a.n - b.n)) {
         const n = nd.n;
+        if (nd.pre) {
+          const cops = this.game.players.filter((p) => p.role === "parity-cop").map((p) => p.name);
+          out.push({ key: "pre", type: "pre", n: 0, alive: aliveNames(new Set()), cops,
+            checks: cops.filter((c) => nd.acts[c]).map((c) => ({ who: c, msg: `Your starting reference is ${nd.acts[c]}. Each night check someone else; you learn if they are SAME or DIFFERENT to your previous check.` })) });
+          continue;
+        }
         if (n >= 1) {
           const dead = t.beforeDay[n] || new Set();
           const decided = !!E.winnerAt(this.game.players, dead);
@@ -699,6 +705,7 @@ const app = Vue.createApp({
       this.game.nights = [];
       this.game.votes = {};
       const first = this.run.setup.nightless ? 1 : (this.run.setup.start === "night" ? 0 : 1);
+      if (first === 1 && !this.run.setup.nightless) this.openPre(true);
       this.openPhase(first);
       this.game.phase = "play";
     },
@@ -712,6 +719,14 @@ const app = Vue.createApp({
       if (missing.length && !confirm("Finish recording first?\n" + missing.join("\n") + "\n\nContinue anyway?")) return;
       const ns = this.game.nights.map((x) => x.n);
       this.openPhase(Math.max(...ns) + 1);
+    },
+    openPre(roll) {
+      const nd = { ...blankNight(0), pre: true };
+      this.game.nights.push(nd);
+      if (roll) for (const p of this.game.players) if (p.role === "parity-cop") this.rollRef(p.name);
+    },
+    rollRef(who) {
+      this.night(0).acts[who] = E.shuffle(this.game.players.filter((p) => p.name !== who))[0].name;
     },
     openPhase(n) {
       this.game.nights.push(blankNight(n));
@@ -839,18 +854,18 @@ const app = Vue.createApp({
       return "visited";
     },
     nightDiscord(n, nd, info) {
-      const lines = [`=== Night ${n} ===`];
+      const lines = [nd.pre ? "=== Pre-game ===" : `=== Night ${n} ===`];
       const kills = [...new Set((nd.kills.mafia || []).filter(Boolean))];
       if (kills.length) lines.push(`mafia: killed ${kills.join(", ")}`);
       for (const [who, target] of Object.entries(nd.acts || {})) {
         if (!target) continue;
         const p = E.byName(this.game.players, who);
-        if (p) lines.push(`${who} (${this.instName(p)}): ${this.actVerb(p, nd)} ${target === "(commute)" ? "" : target}`.trim());
+        if (p) lines.push(`${who} (${this.instName(p)}): ${nd.pre ? "reference" : this.actVerb(p, nd)} ${target === "(commute)" ? "" : target}`.trim());
       }
       for (const e of nd.events || [])
         if (e.who || e.note) lines.push(`mod: ${e.who ? e.who + " " : ""}${e.kind === "death" ? "died" : ""}${e.note ? " — " + e.note : ""}`.replace("  ", " "));
       const deaths = info ? this.timeline.deaths[n] : [];
-      lines.push(`down: ${deaths && deaths.length ? deaths.join(", ") : "nobody"}`);
+      if (!nd.pre) lines.push(`down: ${deaths && deaths.length ? deaths.join(", ") : "nobody"}`);
       if (nd.rng && nd.rng[0] != null && nd.rng[1] != null) lines.push(`D${n + 1} rngs: ${nd.rng[0] + nd.rng[1]}`);
       return lines.join("\n");
     },
@@ -898,6 +913,8 @@ const app = Vue.createApp({
           if (!saved.game.votes[nd.n]) saved.game.votes[nd.n] = [];
           saved.game.days[nd.n] = { ...blankDay(), ...(saved.game.days[nd.n] || {}) };
         }
+        if (saved.game.phase === "play" && !saved.run.setup.nightless && !saved.game.nights.some((x) => x.n === 0))
+          saved.game.nights.push({ ...blankNight(0), pre: true });
         this.run = saved.run;
         this.game = saved.game;
         this.route = "console";

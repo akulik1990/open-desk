@@ -238,8 +238,37 @@
           <div class="day-strip" v-if="blk.type==='day'">Day {{ blk.n }}</div>
           <div class="card" :class="'phase-' + blk.type">
             <h3 v-if="blk.type==='day'">Day {{ blk.n }} vote</h3>
+            <h3 v-else-if="blk.type==='pre'">Pre-game</h3>
             <h3 v-else>Night {{ blk.n }}</h3>
             <div v-if="blk.decided" class="decided">Game was already decided.</div>
+            <template v-else-if="blk.type==='pre'">
+              <div class="field" v-for="c in blk.cops" :key="'ref'+c">
+                <label>{{ c }} <span class="note">parity cop, random starting reference</span></label>
+                <select :value="night(0).acts[c] ?? ''" @change="set(night(0).acts, c, $event.target.value)">
+                  <option value="">none</option>
+                  <option v-for="nm in blk.alive.filter(x => x !== c)" :value="nm">{{ nm }}</option>
+                </select>
+                <button class="btn sm" @click="rollRef(c)">Reroll</button>
+              </div>
+              <div class="field">
+                <label>Formals (Day 1)</label>
+                <span class="rngrow">
+                  <template v-for="i in [0,1]" :key="i">
+                    <span v-if="i===1">+</span>
+                    <button class="btn sm" v-if="nightRng(0)[i]==null" @click="rollRng(0, i)">Roll</button>
+                    <span v-else class="rngval">{{ nightRng(0)[i] }}</span>
+                  </template>
+                  <span>=</span>
+                  <span class="rngval">{{ nightRng(0)[0]!=null && nightRng(0)[1]!=null ? nightRng(0)[0]+nightRng(0)[1] : '?' }}</span>
+                </span>
+              </div>
+              <template v-if="blk.checks.length">
+                <div class="checks-hd">send to each cop</div>
+                <div class="paste" v-for="c in blk.checks" :key="c.who">
+                  <div class="head"><span>to {{ c.who }}</span><button class="btn-copy" @click="copy($event, c.msg)">Copy</button></div><pre>{{ c.msg }}</pre>
+                </div>
+              </template>
+            </template>
             <template v-else-if="blk.type==='day'">
               <div class="field" v-for="o in blk.owed" :key="'p'+o">
                 <label>Poisoned: {{ o }}</label>
@@ -354,6 +383,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>
