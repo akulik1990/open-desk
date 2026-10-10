@@ -355,7 +355,7 @@ const blankDay = () => ({ shots: {}, shotForce: {}, cures: [], events: [], sleep
 
 const blankDraft = () => ({
   name: "", players: 9, start: "day", nightless: false, reveal: "full",
-  sleepPunishment: false, mafiaKp: 1, kpTill: 0, dayVotes: 1, pastebin: "", notes: "",
+  sleepPunishment: false, mafiaKp: 1, kpTill: 0, dayVotes: 1, pastebin: "", notes: "", parityRef: "",
   roster: [{ role: "mafia", count: 1, align: "mafia", mods: [], tags: [], tagsText: "", as: "" }],
   randomize: null,
 });
@@ -463,8 +463,9 @@ const app = Vue.createApp({
         const n = nd.n;
         if (nd.pre) {
           const cops = this.game.players.filter((p) => p.role === "parity-cop").map((p) => p.name);
-          out.push({ key: "pre", type: "pre", n: 0, alive: aliveNames(new Set()), cops,
-            checks: cops.filter((c) => nd.acts[c]).map((c) => ({ who: c, msg: `Your starting reference is ${nd.acts[c]}. Each night check someone else; you learn if they are SAME or DIFFERENT to your previous check.` })) });
+          const rng = setup.parityRef === "rng";
+          out.push({ key: "pre", type: "pre", n: 0, alive: aliveNames(new Set()), cops, rng,
+            checks: rng ? cops.filter((c) => nd.acts[c]).map((c) => ({ who: c, msg: `Your starting reference is ${nd.acts[c]}. Each night check someone else; you learn if they are SAME or DIFFERENT to your previous check.` })) : [] });
           continue;
         }
         if (n >= 1) {
@@ -640,7 +641,7 @@ const app = Vue.createApp({
       const d = JSON.parse(JSON.stringify(s));
       d.dayVotes = d.dayVotes || 1; d.kpTill = d.kpTill || 0;
       d.start = d.start || "day"; d.reveal = d.reveal || "full";
-      d.mafiaKp = d.mafiaKp ?? 1; d.pastebin = d.pastebin || ""; d.notes = d.notes || "";
+      d.mafiaKp = d.mafiaKp ?? 1; d.pastebin = d.pastebin || ""; d.notes = d.notes || ""; d.parityRef = d.parityRef || "";
       for (const e of d.roster || []) { e.mods = e.mods || []; e.tags = e.tags || []; e.tagsText = e.tags.join(", "); e.as = e.as || ""; }
       this.draft = d; this.route = "builder";
     },
@@ -658,6 +659,7 @@ const app = Vue.createApp({
       const d = JSON.parse(JSON.stringify(this.draft));
       delete d.importText;
       if (typeof d.n0Kp !== "number") delete d.n0Kp;
+      if (d.parityRef !== "rng") delete d.parityRef;
       if (typeof d.votesTill !== "number" || !d.votesTill) delete d.votesTill;
       if (d.roster) d.roster = d.roster.map((e) => {
         const o = { role: e.role, count: e.count, align: e.align };
@@ -705,7 +707,7 @@ const app = Vue.createApp({
       this.game.nights = [];
       this.game.votes = {};
       const first = this.run.setup.nightless ? 1 : (this.run.setup.start === "night" ? 0 : 1);
-      if (first === 1 && !this.run.setup.nightless) this.openPre(true);
+      if (first === 1 && !this.run.setup.nightless) this.openPre(this.run.setup.parityRef === "rng");
       this.openPhase(first);
       this.game.phase = "play";
     },
@@ -860,7 +862,7 @@ const app = Vue.createApp({
       for (const [who, target] of Object.entries(nd.acts || {})) {
         if (!target) continue;
         const p = E.byName(this.game.players, who);
-        if (p) lines.push(`${who} (${this.instName(p)}): ${nd.pre ? "reference" : this.actVerb(p, nd)} ${target === "(commute)" ? "" : target}`.trim());
+        if (p) lines.push(`${who} (${this.instName(p)}): ${nd.pre ? "n0 " + (this.run.setup.parityRef === "rng" ? "reference" : "check") : this.actVerb(p, nd)} ${target === "(commute)" ? "" : target}`.trim());
       }
       for (const e of nd.events || [])
         if (e.who || e.note) lines.push(`mod: ${e.who ? e.who + " " : ""}${e.kind === "death" ? "died" : ""}${e.note ? " — " + e.note : ""}`.replace("  ", " "));

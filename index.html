@@ -133,6 +133,7 @@
         <label class="field2">Mafia KP <input type="number" min="0" max="4" v-model.number="draft.mafiaKp"></label>
         <label class="field2">Steps down at ≤ N mafia (0 = constant) <input type="number" min="0" max="6" v-model.number="draft.kpTill"></label>
         <label class="field2">Night 0 KP (blank = same) <input type="number" min="0" max="4" v-model.number="draft.n0Kp" placeholder="same"></label>
+        <label class="field2" v-if="draft.start==='day' && !draft.nightless" title="day start only: how a parity cop gets its first reference">Parity cop n0 <select v-model="draft.parityRef"><option value="">cop picks</option><option value="rng">random, mod rolls</option></select></label>
       </div>
       <p class="note">{{ kpLabel(draft) }}</p>
       <div class="row">
@@ -243,12 +244,15 @@
             <div v-if="blk.decided" class="decided">Game was already decided.</div>
             <template v-else-if="blk.type==='pre'">
               <div class="field" v-for="c in blk.cops" :key="'ref'+c">
-                <label>{{ c }} <span class="note">parity cop, random starting reference</span></label>
-                <select :value="night(0).acts[c] ?? ''" @change="set(night(0).acts, c, $event.target.value)">
-                  <option value="">none</option>
+                <label>{{ c }} <span class="note">parity cop, {{ blk.rng ? 'random starting reference' : 'n0 check (cop picks)' }}</span></label>
+                <template v-if="blk.rng">
+                  <span class="rngval">{{ night(0).acts[c] }}</span>
+                  <button class="btn sm" @click="rollRef(c)">Reroll</button>
+                </template>
+                <select v-else :value="night(0).acts[c] ?? ''" @change="set(night(0).acts, c, $event.target.value)">
+                  <option value="">no check</option>
                   <option v-for="nm in blk.alive.filter(x => x !== c)" :value="nm">{{ nm }}</option>
                 </select>
-                <button class="btn sm" @click="rollRef(c)">Reroll</button>
               </div>
               <div class="field">
                 <label>Formals (Day 1)</label>
@@ -383,6 +387,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
-<script src="app.js?v=9"></script>
+<script src="app.js?v=10"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@
   "nightless": false,
   "reveal": "full",
   "sleepPunishment": false,
+  "parityRef": "rng",
   "mafiaKp": 2,
   "kpTill": 2,
   "pastebin": "https://gist.github.com/takethedraw/8afdac8491277cd5f69eae00e21fe63e",
