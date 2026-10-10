@@ -465,7 +465,7 @@ const app = Vue.createApp({
           const cops = this.game.players.filter((p) => p.role === "parity-cop").map((p) => p.name);
           const rng = setup.parityRef === "rng";
           out.push({ key: "pre", type: "pre", n: 0, alive: aliveNames(new Set()), cops, rng,
-            checks: rng ? cops.filter((c) => nd.acts[c]).map((c) => ({ who: c, msg: `Your starting reference is ${nd.acts[c]}. Each night check someone else; you learn if they are SAME or DIFFERENT to your previous check.` })) : [] });
+            checks: rng ? cops.filter((c) => nd.acts[c]).map((c) => ({ who: c, msg: `Your starting check is ${nd.acts[c]}. Each night check someone else; you learn if they are SAME or DIFFERENT to your previous check.` })) : [] });
           continue;
         }
         if (n >= 1) {
