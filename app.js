@@ -938,7 +938,10 @@ function setupFiles() {
   return getJson("setups/index.json").then((idx) => idx.map((row) => row.file));
 }
 
+const VER = ((document.currentScript || {}).src || "").split("v=")[1] || "";
+
 function getJson(url, tries) {
+  if (!url.startsWith("http")) url += "?v=" + VER;
   return fetch(url, { cache: "no-cache" }).then((r) => {
     if (!r.ok) throw new Error(url + " came back " + r.status);
     return r.json();
