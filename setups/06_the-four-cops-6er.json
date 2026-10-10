@@ -2,7 +2,7 @@
   "name": "The Four Cops 6er",
   "players": 6,
   "start": "night",
-  "nightless": true,
+  "nightless": false,
   "reveal": "full",
   "sleepPunishment": true,
   "mafiaKp": 0,
