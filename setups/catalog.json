@@ -310,6 +310,12 @@
       "align": "town",
       "cat": "utility",
       "desc": "Told on night 1 which inspector digit means mafia."
+    },
+    "auto-mortician": {
+      "name": "Mortician (automatic)",
+      "align": "town",
+      "cat": "investigative",
+      "desc": "Told the exact role of everyone who dies, day or night. No action to take."
     }
   },
   "mods": {

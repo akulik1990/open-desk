@@ -7,7 +7,7 @@
   "sleepPunishment": false,
   "mafiaKp": 1,
   "pastebin": "https://pastebin.com/raw/PTwrBcTm",
-  "notes": "The uninformed cop enabler is not told their role; while alive the cop gets results, and its death silences the cop. Track the enabler by hand.",
+  "notes": "The uninformed cop enabler is not told their role; while alive the cop gets results, and its death silences the cop. Track the enabler by hand. The mortician gets a copy block with the roles of everyone who died that day and night.",
   "roster": [
     {
       "role": "mafia",
@@ -26,9 +26,10 @@
       "as": "Uninformed Cop Enabler"
     },
     {
-      "role": "mortician",
+      "role": "auto-mortician",
       "count": 1,
-      "align": "town"
+      "align": "town",
+      "as": "Mortician"
     },
     {
       "role": "vt",

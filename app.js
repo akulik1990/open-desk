@@ -543,6 +543,9 @@ const app = Vue.createApp({
           });
         const checkList = checks.map(([who, r]) => ({ who, msg: this.checkMsg(r) }));
         if (n === 1 && this.codeText) for (const p of liveP) if (p.role === "interpreter") checkList.push({ who: p.name, msg: `The inspector's code: ${this.codeText}.` });
+        const gone = [...(t.dayDeaths[n] || []), ...(t.deaths[n] || [])].map((x) => E.byName(this.game.players, x)).filter(Boolean);
+        if (gone.length) for (const p of liveP) if (p.role === "auto-mortician" && !gone.includes(p))
+          checkList.push({ who: p.name, msg: gone.map((q) => `${q.name} was ${this.instName(q)} (${q.align})`).join("\n") });
         for (const [who, txt] of Object.entries(nd.dream || {})) if (txt) checkList.push({ who, msg: txt });
         out.push({
           key: "n" + n, type: "night", n, decided: false, kp,
