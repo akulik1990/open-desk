@@ -7,7 +7,7 @@
   "sleepPunishment": false,
   "mafiaKp": 1,
   "pastebin": "https://pastebin.com/raw/kA5YmhHh",
-  "notes": "The sheriff has a cop check plus a one-bullet day shot. Vengefuls kill a chosen player on death. Run day shots and vengefuls by hand.",
+  "notes": "The sheriff has a cop check plus a one-bullet day shot; day shots are on the day card. Vengefuls kill a chosen player on death: record that kill with + event.",
   "roster": [
     {
       "role": "rolecop",

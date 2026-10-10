@@ -7,7 +7,7 @@
   "sleepPunishment": false,
   "mafiaKp": 1,
   "pastebin": "https://pastebin.com/raw/7HbYs7PR",
-  "notes": "The two masons are lovers (linked death). Vengefuls kill a chosen player on death. Run vengefuls by hand.",
+  "notes": "The two masons are lovers (linked death). Vengefuls kill a chosen player on death: record that kill with + event.",
   "roster": [
     {
       "role": "heartbreaker",

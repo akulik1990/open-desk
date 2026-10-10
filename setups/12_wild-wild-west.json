@@ -7,7 +7,7 @@
   "sleepPunishment": false,
   "mafiaKp": 1,
   "pastebin": "https://pastebin.com/raw/CVycvgpr",
-  "notes": "The sheriff has a cop check plus a one-bullet day shot. Record the day shot by hand for now.",
+  "notes": "The sheriff has a cop check plus a one-bullet day shot; day shots are on the day card.",
   "roster": [
     {
       "role": "rolecop",
