@@ -41,7 +41,7 @@
   }
 
   const KILLERS = new Set(["vigilante", "serial-killer", "werewolf"]);
-  const COPS = { cop: "sane", "naive-cop": "naive", "paranoid-cop": "paranoid", "insane-cop": "insane", "parity-cop": "parity", neapolitan: "neapolitan", rolecop: "role", sorcerer: "seeker" };
+  const COPS = { cop: "sane", "naive-cop": "naive", "paranoid-cop": "paranoid", "insane-cop": "insane", "parity-cop": "parity", neapolitan: "neapolitan", rolecop: "role", sorcerer: "seeker", inspector: "coded" };
   const VISITORS = new Set(["fruit-vendor", "silencer", "neighbourizer", "heartbreaker"]);
   function caps(p) {
     const r = p.role;
@@ -119,6 +119,7 @@
     const modes = night.modes || {};
     const can = (p) => acts[p.name] && nightAllowed(p, night.n) && shotsLeft(p, priorNights, priorDays) > 0;
     const joatAs = (p, mode) => caps(p).joat && modes[p.name] === mode && !joatUsed(p, mode, priorNights);
+    const code = (night.n === 0 ? night : priorNights.find((x) => x.n === 0) || {}).code;
 
     const cs = new Map(live.map((p) => [p, caps(p)]));
     const blocked = new Set();
@@ -184,7 +185,7 @@
         continue;
       }
       if (!act(t)) continue;
-      if (c.cop) checks[p.name] = copResult(c.cop, p, byName(players, t), t, priorNights, players);
+      if (c.cop) checks[p.name] = copResult(c.cop, p, byName(players, t), t, priorNights, players, code);
       else if (joatAs(p, "check")) checks[p.name] = copResult("sane", p, byName(players, t), t, priorNights, players);
       else if (c.tracker) checks[p.name] = { kind: "tracker", target: t, visited: acts[t] && act(acts[t]) ? acts[t] : null };
       else if (c.watcher) checks[p.name] = { kind: "watcher", target: t, visitors: live.filter((q) => acts[q.name] === t && working(q)).map((q) => q.name) };
@@ -213,7 +214,8 @@
     return priorNights.some((nd) => nd.acts && nd.acts[p.name] && nd.modes && nd.modes[p.name] === mode);
   }
 
-  function copResult(kind, cop, target, targetName, priorNights, players) {
+  function copResult(kind, cop, target, targetName, priorNights, players, code) {
+    if (kind === "coded") return { kind: "coded", target: targetName, result: code == null ? "?" : String(readsAs(target) === "mafia" ? code : 1 - code) };
     if (kind === "role") return { kind: "role", target: targetName, role: target ? (target.as || target.role) : "?" };
     if (kind === "neapolitan") return { kind: "neapolitan", target: targetName, result: target && target.role === "vt" && target.align === "town" ? "vanilla" : "not vanilla" };
     if (kind === "seeker") return { kind: "seeker", target: targetName, result: target && target.align === "town" && COPS[target.role] ? "THE COP" : "not the cop" };
@@ -540,6 +542,7 @@ const app = Vue.createApp({
             };
           });
         const checkList = checks.map(([who, r]) => ({ who, msg: this.checkMsg(r) }));
+        if (n === 1 && this.codeText) for (const p of liveP) if (p.role === "interpreter") checkList.push({ who: p.name, msg: `The inspector's code: ${this.codeText}.` });
         for (const [who, txt] of Object.entries(nd.dream || {})) if (txt) checkList.push({ who, msg: txt });
         out.push({
           key: "n" + n, type: "night", n, decided: false, kp,
@@ -550,6 +553,8 @@ const app = Vue.createApp({
       }
       return out;
     },
+    codeRole() { return !!this.night(0) && this.game.players.some((p) => p.role === "inspector" || p.role === "interpreter"); },
+    codeText() { const c = this.night(0) && this.night(0).code; return c == null ? "" : `${c} = mafia, ${1 - c} = town`; },
     nextLabel() {
       const ns = this.game.nights.map((x) => x.n);
       const next = ns.length ? Math.max(...ns) + 1 : (this.run.setup.start === "night" ? 0 : 1);
@@ -709,6 +714,7 @@ const app = Vue.createApp({
       const first = this.run.setup.nightless ? 1 : (this.run.setup.start === "night" ? 0 : 1);
       if (first === 1 && !this.run.setup.nightless) this.openPre(this.run.setup.parityRef === "rng");
       this.openPhase(first);
+      if (this.codeRole) this.rollCode();
       this.game.phase = "play";
     },
     advance() {
@@ -727,6 +733,7 @@ const app = Vue.createApp({
       this.game.nights.push(nd);
       if (roll) for (const p of this.game.players) if (p.role === "parity-cop") this.rollRef(p.name);
     },
+    rollCode() { this.night(0).code = Math.random() < 0.5 ? 0 : 1; },
     rollRef(who) {
       this.night(0).acts[who] = E.shuffle(this.game.players.filter((p) => p.name !== who))[0].name;
     },
@@ -830,7 +837,7 @@ const app = Vue.createApp({
     },
     checkMsg(r) {
       if (r.kind === "mortician") return `${r.target} was ${r.result}`;
-      if (r.kind === "align") return `Your check on ${r.target}: ${r.result}`;
+      if (r.kind === "align" || r.kind === "coded") return `Your check on ${r.target}: ${r.result}`;
       if (r.kind === "parity") return r.vs ? `${r.target} is ${r.result} to ${r.vs}` : `${r.target}: first check, no result`;
       if (r.kind === "role") return `${r.target} is ${r.role}`;
       if (r.kind === "neapolitan") return `${r.target} is ${r.result}`;
@@ -857,6 +864,7 @@ const app = Vue.createApp({
     },
     nightDiscord(n, nd, info) {
       const lines = [nd.pre ? "=== Pre-game ===" : `=== Night ${n} ===`];
+      if (n === 0 && nd.code != null) lines.push(`inspector code: ${this.codeText}`);
       const kills = [...new Set((nd.kills.mafia || []).filter(Boolean))];
       if (kills.length) lines.push(`mafia: killed ${kills.join(", ")}`);
       for (const [who, target] of Object.entries(nd.acts || {})) {
@@ -938,7 +946,7 @@ function setupFiles() {
   return getJson("setups/index.json").then((idx) => idx.map((row) => row.file));
 }
 
-const VER = ((document.currentScript || {}).src || "").split("v=")[1] || "";
+const VER = typeof document === "undefined" ? "" : ((document.currentScript || {}).src || "").split("v=")[1] || "";
 
 function getJson(url, tries) {
   if (!url.startsWith("http")) url += "?v=" + VER;

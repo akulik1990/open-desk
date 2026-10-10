@@ -297,6 +297,19 @@
       "align": "mafia",
       "cat": "vanilla",
       "desc": "Vanilla mafia, shares the factional kill. If exiled on day 1, the mafia lose and the game ends."
+    },
+    "inspector": {
+      "name": "Inspector",
+      "align": "town",
+      "cat": "investigative",
+      "act": "night-target",
+      "desc": "Each night, check a player and get a 0 or 1 for their alignment. Which digit means mafia is rolled in secret at night 0."
+    },
+    "interpreter": {
+      "name": "Interpreter",
+      "align": "town",
+      "cat": "utility",
+      "desc": "Told on night 1 which inspector digit means mafia."
     }
   },
   "mods": {

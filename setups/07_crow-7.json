@@ -7,7 +7,7 @@
   "sleepPunishment": false,
   "mafiaKp": 1,
   "pastebin": "https://pastebin.com/raw/ZBVJKjYH",
-  "notes": "The inspector reads a coded 0/1 by alignment; the interpreter learns N1 which of 0/1 means mafia. The app resolves the inspector as a plain alignment check; hand the coded result over yourself.",
+  "notes": "The console rolls the inspector's 0/1 code at the start, the inspector gets coded results, and the interpreter's night 1 copy block tells them the code.",
   "roster": [
     {
       "role": "mafia",
@@ -15,16 +15,14 @@
       "align": "mafia"
     },
     {
-      "role": "cop",
+      "role": "inspector",
       "count": 1,
-      "align": "town",
-      "as": "Inspector"
+      "align": "town"
     },
     {
-      "role": "vt",
+      "role": "interpreter",
       "count": 1,
-      "align": "town",
-      "as": "Interpreter"
+      "align": "town"
     },
     {
       "role": "vt",

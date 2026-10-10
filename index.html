@@ -243,6 +243,11 @@
             <h3 v-else>Night {{ blk.n }}</h3>
             <div v-if="blk.decided" class="decided">Game was already decided.</div>
             <template v-else-if="blk.type==='pre'">
+              <div class="field" v-if="blk.n===0 && codeRole">
+                <label>Inspector code <span class="note">rolled in secret, interpreter is told night 1</span></label>
+                <span class="rngval">{{ codeText || 'not rolled' }}</span>
+                <button class="btn sm" @click="rollCode">{{ codeText ? 'Reroll' : 'Roll' }}</button>
+              </div>
               <div class="field" v-for="c in blk.cops" :key="'ref'+c">
                 <label>{{ c }} <span class="note">parity cop, {{ blk.rng ? 'random starting reference' : 'n0 check (cop picks)' }}</span></label>
                 <template v-if="blk.rng">
@@ -315,6 +320,11 @@
               <div class="field"><button class="btn sm" @click="game.days[blk.n].events.push({who:'',kind:'death',note:''})">+ event</button></div>
             </template>
             <template v-else>
+              <div class="field" v-if="blk.n===0 && codeRole">
+                <label>Inspector code <span class="note">rolled in secret, interpreter is told night 1</span></label>
+                <span class="rngval">{{ codeText || 'not rolled' }}</span>
+                <button class="btn sm" @click="rollCode">{{ codeText ? 'Reroll' : 'Roll' }}</button>
+              </div>
               <div class="field" v-for="i in blk.kp" :key="'k'+i">
                 <label>Mafia kill {{ blk.kp>1 ? i : '' }}</label>
                 <select :value="night(blk.n).kills.mafia[i-1] ?? ''" @change="setIdx(night(blk.n).kills.mafia, i-1, $event.target.value)">
@@ -387,6 +397,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
-<script src="app.js?v=12"></script>
+<script src="app.js?v=13"></script>
 </body>
 </html>
