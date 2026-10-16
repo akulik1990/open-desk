@@ -248,15 +248,15 @@
                 <span class="rngval">{{ codeText || 'not rolled' }}</span>
                 <button class="btn sm" @click="rollCode">{{ codeText ? 'Reroll' : 'Roll' }}</button>
               </div>
-              <div class="field" v-for="c in blk.cops" :key="'ref'+c">
-                <label>{{ c }} <span class="note">parity cop, {{ blk.rng ? 'random starting reference' : 'n0 check (cop picks)' }}</span></label>
-                <template v-if="blk.rng">
-                  <span class="rngval">{{ night(0).acts[c] }}</span>
-                  <button class="btn sm" @click="rollRef(c)">Reroll</button>
+              <div class="field" v-for="r in blk.rows" :key="'ref'+r.name">
+                <label>{{ r.name }} <span class="note">{{ r.note }}</span></label>
+                <template v-if="r.rng">
+                  <span class="rngval">{{ night(0).acts[r.name] }}</span>
+                  <button class="btn sm" @click="rollRef(r.name)">Reroll</button>
                 </template>
-                <select v-else :value="night(0).acts[c] ?? ''" @change="set(night(0).acts, c, $event.target.value)">
+                <select v-else :value="night(0).acts[r.name] ?? ''" @change="set(night(0).acts, r.name, $event.target.value)">
                   <option value="">no check</option>
-                  <option v-for="nm in blk.alive.filter(x => x !== c)" :value="nm">{{ nm }}</option>
+                  <option v-for="nm in blk.alive.filter(x => x !== r.name)" :value="nm">{{ nm }}</option>
                 </select>
               </div>
               <div class="field">
@@ -272,7 +272,7 @@
                 </span>
               </div>
               <template v-if="blk.checks.length">
-                <div class="checks-hd">send to each cop</div>
+                <div class="checks-hd">send at game start</div>
                 <div class="paste" v-for="c in blk.checks" :key="c.who">
                   <div class="head"><span>to {{ c.who }}</span><button class="btn-copy" @click="copy($event, c.msg)">Copy</button></div><pre>{{ c.msg }}</pre>
                 </div>
@@ -397,6 +397,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
-<script src="app.js?v=14"></script>
+<script src="app.js?v=15"></script>
 </body>
 </html>

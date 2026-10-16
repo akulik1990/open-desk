@@ -316,6 +316,13 @@
       "align": "town",
       "cat": "investigative",
       "desc": "Told the exact role of everyone who dies, day or night. No action to take."
+    },
+    "supercop": {
+      "name": "Supercop",
+      "align": "town",
+      "cat": "investigative",
+      "act": "passive",
+      "desc": "Told the full mafia team at the start of the game."
     }
   },
   "mods": {
@@ -354,6 +361,10 @@
     "stupid": {
       "name": "Stupid",
       "desc": "Kill only lands on town; a mafia target survives."
+    },
+    "lone": {
+      "name": "Lone",
+      "desc": "Plays alone: not in the team chat and does not count towards parity."
     }
   },
   "items": {

@@ -1,0 +1,52 @@
+{
+  "name": "Sorc 9er",
+  "players": 9,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "kpTill": 0,
+  "dayVotes": 1,
+  "sorcGreen": true,
+  "pastebin": "",
+  "notes": "The sorcerer plays alone: not in the mafia chat, does not count towards parity, reads town to the cop, and hunts the cop. The console rolls their night 0 green (a random town player who is not the cop) on the pre-game card. The priest is a mortician: full role of one dead player each night. The hunter wins the 1v1 against the mafia.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 2,
+      "align": "mafia"
+    },
+    {
+      "role": "sorcerer",
+      "count": 1,
+      "align": "mafia",
+      "mods": [
+        "lone"
+      ]
+    },
+    {
+      "role": "cop",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "mortician",
+      "count": 1,
+      "align": "town",
+      "as": "Priest"
+    },
+    {
+      "role": "parity-champion",
+      "count": 1,
+      "align": "town",
+      "as": "Hunter"
+    },
+    {
+      "role": "vt",
+      "count": 3,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Svaan 9er",
+  "players": 9,
+  "start": "day",
+  "nightless": false,
+  "reveal": "full",
+  "sleepPunishment": false,
+  "mafiaKp": 1,
+  "kpTill": 0,
+  "dayVotes": 1,
+  "pastebin": "",
+  "notes": "Svaan setup: half the players rounded down are mafia (4 of 9), one supercop who is told the full mafia team at the start (copy block on the pre-game card), the rest vanilla town. Works with any odd count; 7 is the sweet spot.",
+  "roster": [
+    {
+      "role": "mafia",
+      "count": 4,
+      "align": "mafia"
+    },
+    {
+      "role": "supercop",
+      "count": 1,
+      "align": "town"
+    },
+    {
+      "role": "vt",
+      "count": 4,
+      "align": "town"
+    }
+  ],
+  "randomize": null
+}

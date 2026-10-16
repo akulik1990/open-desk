@@ -66,6 +66,7 @@
       strongman: r === "strongman",
       godfather: r === "godfather" || r === "sorcerer",
       parityChamp: r === "parity-champion",
+      lone: has(p, "lone"),
       d1Loss: r === "don",
       absorbs: r === "bulletproof" || (p.items || []).includes("vest"),
       linked: r === "lover",
@@ -98,7 +99,7 @@
 
   function winnerAt(players, dead) {
     const live = alive(players, dead);
-    const threats = live.filter((p) => HOSTILE.has(p.align));
+    const threats = live.filter((p) => HOSTILE.has(p.align) && !has(p, "lone"));
     if (!threats.length) return "Town";
     const byFaction = {};
     for (const p of threats) byFaction[p.align] = (byFaction[p.align] || 0) + 1;
@@ -448,7 +449,7 @@ const app = Vue.createApp({
         (groups[k] = groups[k] || []).push(p.name);
       }
       const lines = ["**Reveal**"];
-      const maf = roster.filter((p) => p.align === "mafia").map((p) => p.name);
+      const maf = roster.filter((p) => p.align === "mafia" && !E.caps(p).lone).map((p) => p.name);
       if (maf.length) lines.push(`Mafia team: ||${maf.join(", ")}||`);
       for (const [k, names] of Object.entries(groups)) {
         const [role, align] = k.split("|");
@@ -464,10 +465,14 @@ const app = Vue.createApp({
       for (const nd of [...this.game.nights].sort((a, b) => a.n - b.n)) {
         const n = nd.n;
         if (nd.pre) {
-          const cops = this.game.players.filter((p) => p.role === "parity-cop").map((p) => p.name);
-          const rng = setup.parityRef === "rng";
-          out.push({ key: "pre", type: "pre", n: 0, alive: aliveNames(new Set()), cops, rng,
-            checks: rng ? cops.filter((c) => nd.acts[c]).map((c) => ({ who: c, msg: `Your starting check is ${nd.acts[c]}. Each night check someone else; you learn if they are SAME or DIFFERENT to your previous check.` })) : [] });
+          const rows = [], checks = [];
+          for (const p of this.game.players) {
+            if (p.role === "parity-cop") rows.push({ name: p.name, rng: setup.parityRef === "rng", note: setup.parityRef === "rng" ? "parity cop, random starting reference" : "parity cop, n0 check (cop picks)" });
+            if (p.role === "sorcerer" && setup.sorcGreen) rows.push({ name: p.name, rng: true, note: "sorcerer, random n0 green (town, not the cop)" });
+          }
+          for (const r of rows) if (r.rng && nd.acts[r.name])
+            checks.push({ who: r.name, msg: E.byName(this.game.players, r.name).role === "sorcerer" ? `Night 0: ${nd.acts[r.name]} is not the cop.` : `Your starting check is ${nd.acts[r.name]}. Each night check someone else; you learn if they are SAME or DIFFERENT to your previous check.` });
+          out.push({ key: "pre", type: "pre", n: 0, alive: aliveNames(new Set()), rows, checks: checks.concat(this.teamInfo()) });
           continue;
         }
         if (n >= 1) {
@@ -542,6 +547,7 @@ const app = Vue.createApp({
             };
           });
         const checkList = checks.map(([who, r]) => ({ who, msg: this.checkMsg(r) }));
+        if (n === 0) checkList.push(...this.teamInfo());
         if (n === 1 && this.codeText) for (const p of liveP) if (p.role === "interpreter") checkList.push({ who: p.name, msg: `The inspector's code: ${this.codeText}.` });
         const gone = [...(t.dayDeaths[n] || []), ...(t.deaths[n] || [])].map((x) => E.byName(this.game.players, x)).filter(Boolean);
         if (gone.length) for (const p of liveP) if (p.role === "auto-mortician" && !gone.includes(p))
@@ -715,7 +721,7 @@ const app = Vue.createApp({
       this.game.nights = [];
       this.game.votes = {};
       const first = this.run.setup.nightless ? 1 : (this.run.setup.start === "night" ? 0 : 1);
-      if (first === 1 && !this.run.setup.nightless) this.openPre(this.run.setup.parityRef === "rng");
+      if (first === 1 && !this.run.setup.nightless) this.openPre();
       this.openPhase(first);
       if (this.codeRole) this.rollCode();
       this.game.phase = "play";
@@ -731,14 +737,23 @@ const app = Vue.createApp({
       const ns = this.game.nights.map((x) => x.n);
       this.openPhase(Math.max(...ns) + 1);
     },
-    openPre(roll) {
+    openPre() {
       const nd = { ...blankNight(0), pre: true };
       this.game.nights.push(nd);
-      if (roll) for (const p of this.game.players) if (p.role === "parity-cop") this.rollRef(p.name);
+      const s = this.run.setup;
+      for (const p of this.game.players) {
+        if ((p.role === "parity-cop" && s.parityRef === "rng") || (p.role === "sorcerer" && s.sorcGreen)) this.rollRef(p.name);
+      }
+    },
+    teamInfo() {
+      const team = this.game.players.filter((p) => p.align === "mafia" && !E.caps(p).lone).map((p) => p.name);
+      return this.game.players.filter((p) => p.role === "supercop").map((p) => ({ who: p.name, msg: `The mafia team: ${team.join(", ")}.` }));
     },
     rollCode() { this.night(0).code = Math.random() < 0.5 ? 0 : 1; },
     rollRef(who) {
-      this.night(0).acts[who] = E.shuffle(this.game.players.filter((p) => p.name !== who))[0].name;
+      const me = E.byName(this.game.players, who);
+      const pool = this.game.players.filter((p) => p.name !== who && (me.role !== "sorcerer" || (p.align === "town" && !E.caps(p).cop)));
+      this.night(0).acts[who] = E.shuffle(pool)[0].name;
     },
     openPhase(n) {
       this.game.nights.push(blankNight(n));
@@ -873,7 +888,7 @@ const app = Vue.createApp({
       for (const [who, target] of Object.entries(nd.acts || {})) {
         if (!target) continue;
         const p = E.byName(this.game.players, who);
-        if (p) lines.push(`${who} (${this.instName(p)}): ${nd.pre ? "n0 " + (this.run.setup.parityRef === "rng" ? "reference" : "check") : this.actVerb(p, nd)} ${target === "(commute)" ? "" : target}`.trim());
+        if (p) lines.push(`${who} (${this.instName(p)}): ${nd.pre ? "n0 " + (p.role === "sorcerer" ? "green" : this.run.setup.parityRef === "rng" ? "reference" : "check") : this.actVerb(p, nd)} ${target === "(commute)" ? "" : target}`.trim());
       }
       for (const e of nd.events || [])
         if (e.who || e.note) lines.push(`mod: ${e.who ? e.who + " " : ""}${e.kind === "death" ? "died" : ""}${e.note ? " — " + e.note : ""}`.replace("  ", " "));
