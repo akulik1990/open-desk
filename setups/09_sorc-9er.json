@@ -34,7 +34,10 @@
       "role": "mortician",
       "count": 1,
       "align": "town",
-      "as": "Priest"
+      "as": "Priest",
+      "mods": [
+        "full"
+      ]
     },
     {
       "role": "parity-champion",

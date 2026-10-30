@@ -29,7 +29,10 @@
       "role": "auto-mortician",
       "count": 1,
       "align": "town",
-      "as": "Mortician"
+      "as": "Mortician",
+      "mods": [
+        "full"
+      ]
     },
     {
       "role": "vt",

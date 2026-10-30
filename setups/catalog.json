@@ -129,7 +129,7 @@
       "align": "town",
       "cat": "investigative",
       "act": "night-target",
-      "desc": "Learn the alignment or role of a dead player."
+      "desc": "Each night, learn the alignment of a dead player (the exact role with the Full modifier)."
     },
     "mason": {
       "name": "Mason",
@@ -315,7 +315,7 @@
       "name": "Mortician (automatic)",
       "align": "town",
       "cat": "investigative",
-      "desc": "Told the exact role of everyone who dies, day or night. No action to take."
+      "desc": "Told the alignment of everyone who dies, day or night (exact role with the Full modifier). No action to take."
     },
     "supercop": {
       "name": "Supercop",
@@ -365,6 +365,10 @@
     "lone": {
       "name": "Lone",
       "desc": "Plays alone: not in the team chat and does not count towards parity."
+    },
+    "full": {
+      "name": "Full",
+      "desc": "Investigations return the exact role, not just the alignment."
     }
   },
   "items": {

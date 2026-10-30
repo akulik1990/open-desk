@@ -181,7 +181,7 @@
       if (c.mortician) {
         if (before.has(t)) {
           const dp = byName(players, t);
-          checks[p.name] = { kind: "mortician", target: t, result: `${dp.as || dp.role} (${dp.align})` };
+          checks[p.name] = { kind: "mortician", target: t, result: dp.align.toUpperCase(), role: has(p, "full") ? (dp.as || dp.role) : null };
         }
         continue;
       }
@@ -551,7 +551,7 @@ const app = Vue.createApp({
         if (n === 1 && this.codeText) for (const p of liveP) if (p.role === "interpreter") checkList.push({ who: p.name, msg: `The inspector's code: ${this.codeText}.` });
         const gone = [...(t.dayDeaths[n] || []), ...(t.deaths[n] || [])].map((x) => E.byName(this.game.players, x)).filter(Boolean);
         if (gone.length) for (const p of liveP) if (p.role === "auto-mortician" && !gone.includes(p))
-          checkList.push({ who: p.name, msg: gone.map((q) => `${q.name} was ${this.instName(q)} (${q.align})`).join("\n") });
+          checkList.push({ who: p.name, msg: gone.map((q) => `${q.name} was ${(p.mods || []).includes("full") ? this.instName(q) + " (" + q.align + ")" : q.align.toUpperCase()}`).join("\n") });
         for (const [who, txt] of Object.entries(nd.dream || {})) if (txt) checkList.push({ who, msg: txt });
         out.push({
           key: "n" + n, type: "night", n, decided: false, kp,
@@ -645,7 +645,8 @@ const app = Vue.createApp({
       }, 240);
     },
     displayName(e) { return e.as || (this.catalog.roles[e.role] ? this.catalog.roles[e.role].name : e.role); },
-    instName(p) { return p.as || (this.catalog.roles[p.role] ? this.catalog.roles[p.role].name : p.role); },
+    instName(p) { return p.as || this.roleName(p.role); },
+    roleName(id) { return this.catalog.roles[id] ? this.catalog.roles[id].name : id; },
     toConsole(s) {
       this.run.setup = JSON.parse(JSON.stringify(s));
       this.game = blankGame();
@@ -848,16 +849,17 @@ const app = Vue.createApp({
     night(n) { return this.game.nights.find((x) => x.n === n); },
 
     checkInline(r) {
-      if (r.kind === "role") return "→ " + r.role;
+      if (r.kind === "role") return "→ " + this.roleName(r.role);
+      if (r.kind === "mortician" && r.role) return "→ " + this.roleName(r.role) + " (" + r.result.toLowerCase() + ")";
       if (r.kind === "tracker") return "→ " + (r.visited || "no visit");
       if (r.kind === "watcher") return "→ " + (r.visitors.length ? r.visitors.join(", ") : "no visitors");
       return "→ " + r.result;
     },
     checkMsg(r) {
-      if (r.kind === "mortician") return `${r.target} was ${r.result}`;
+      if (r.kind === "mortician") return `${r.target} was ${r.role ? this.roleName(r.role) + " (" + r.result.toLowerCase() + ")" : r.result}`;
       if (r.kind === "align" || r.kind === "coded") return `Your check on ${r.target}: ${r.result}`;
       if (r.kind === "parity") return r.vs ? `${r.target} is ${r.result} to ${r.vs}` : `${r.target}: first check, no result`;
-      if (r.kind === "role") return `${r.target} is ${r.role}`;
+      if (r.kind === "role") return `${r.target} is ${this.roleName(r.role)}`;
       if (r.kind === "neapolitan") return `${r.target} is ${r.result}`;
       if (r.kind === "seeker") return `${r.target} is ${r.result}`;
       if (r.kind === "tracker") return r.visited ? `${r.target} visited ${r.visited}` : `${r.target} did not visit anyone`;
